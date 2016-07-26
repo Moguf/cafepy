@@ -14,12 +14,16 @@ class CafePy(object):
         pass
 
     def main(self):
-        pass
+        self.initArgs()
 
-    def args(self):
-        pass
+    def initArgs(self):
+        message = "Analyzing CafeMol outputs."
+        parser = argparse.ArgumentParser(description=message)
+        parser.add_argument('integers',metavar='N',type=int,nargs='+',help='integers for caluclating distances between atoms')
+        
+        args = parser.parse_args()
 
-
+        
 if __name__ == "__main__":
     tmp = CafePy()
     tmp.main()
