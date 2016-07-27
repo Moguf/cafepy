@@ -19,7 +19,8 @@ class CafePy(object):
     def initArgs(self):
         message = "Analyzing CafeMol outputs."
         parser = argparse.ArgumentParser(description=message)
-        parser.add_argument('integers',metavar='N',type=int,nargs='+',help='integers for caluclating distances between atoms')
+        parser.add_argument('calculation_type',nargs='?',type=str,choices=['distance','cmap','com'],help='choose calculation type.')
+        parser.add_argument('-i','--infile',nargs='?',help='input file name[.dcd,.pdb,ninfo,psf]')
         
         args = parser.parse_args()
 
