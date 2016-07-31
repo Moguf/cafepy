@@ -5,6 +5,8 @@ import sys
 import unittest
 import subprocess
 
+from unittest.mock import patch
+
 class CommandLineCafePyTest(unittest.TestCase):
     def setUp(self):
         sys.path.append("../src")
@@ -23,7 +25,9 @@ class CommandLineCafePyTest(unittest.TestCase):
         tmp[2] = "cmap -i test.pdb"
         cmdline = " ".join(tmp)
         outputs = subprocess.check_output(cmdline,shell=True)
-        
+
+                   
+
     def tearDown(self):
         pass
 

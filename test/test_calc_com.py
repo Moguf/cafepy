@@ -7,24 +7,28 @@ class TestCalcCOM(unittest.TestCase):
     def setUp(self):
         sys.path.append("../src")
         from calc_com import CalcCOM
-
+        self.testclass = CalcCOM()
+        
     def test_readDcd(self):
+        self.testclass.readDCD()
+        
+
+    def test_readPDB(self):
+        self.testclass.readPDB()
+        
+    def test_readIndex(self):
         pass
 
-    def test_readPdb(self):
-        pass
-
+        
     def test_calcCOMfromPDB(self):
-        pass
+        self.testclass.calcCOMfromPDB()
 
     def test_calcCOMfromDCD(self):
-        pass
+        self.testclass.calcCOMfromDCD()
         
     def test_main(self):
-        pass
+        self.testclass.main()
 
-
-        
     def tearDown(self):
         pass
 

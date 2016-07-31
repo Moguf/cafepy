@@ -1,15 +1,21 @@
-#!/usr/bin/env python3
+X#!/usr/bin/env python3
 # coding: utf-8
 """
+### Author: Mogu ###
 This code is for analyizing CafeMol Outputs.
 CafeMol which is one of the Molecular Dynamics simulation software 
 is developed by Takada-Lab in Kyoto Univ. .
+
+# environment:
+    Python3.5.1
+# requirements:
+
 """
 
 import argparse
 
 class CafePy(object):
-    #This class is main class of cafepy and analyizes options.
+    #This class is main class of cafepy and analyizes command-line argments.
     def __init__(self):
         pass
 
@@ -24,6 +30,7 @@ class CafePy(object):
         
         args = parser.parse_args()
 
+        return parser
         
 if __name__ == "__main__":
     tmp = CafePy()
