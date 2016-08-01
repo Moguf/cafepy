@@ -6,32 +6,50 @@ import unittest
 
 from unittest.mock import patch
 
+from test_data import *
 
 class TestReadDcd(unittest.TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         sys.path.append("../src")
         from read_dcd import ReadDCD
-        self.testclass = ReadDCD()
+        cls.testclass = ReadDCD()
         test_inpufile = "test.dcd"
-        self.testclass.openFile(test_inpufile,mode="rb")
-        
+        cls.testclass.openFile(test_inpufile,mode="rb")
+
     def test_readHeader(self):
         self.testclass.readHeader()
         
 
     def test_get_onestep_wiht_index(self):
-        self.testclass[0]
+        self.testclass.readHeader()
+        self.assertEqual(initial_cordinates_of_test_data,self.testclass[0])
+        ## check initianl_cordinate
+        print(self.testclass[9])
+        print(self.testclass._header.tstep)
+        print(self.testclass[-1])
 
-    def test_get_trajectory_with_slieces(self):
-        pass
+    def test_get_length_of_trajectory_with_len(self):
+        print(len(self.testclass))
 
-    def test_get_atom_xyz_with_2d_index(self):
-        pass
+    def test_get_a_trajectory_in_loop(self):
+        for i in self.testclass:
+            print(i)
         
+    def test_get_trajectory_with_slieces(self):
+        print(self.testclass[2:4])
+        print(self.testclass[2::2])
+        print(self.testclass[2::2])
+        print(self.testclass[-2:-4])
+
+    def test_readDCD(self):
+        pass
+    
     def tearDown(self):
         pass
 
-    def test_readDCD(self):
+    @classmethod
+    def tearDownClass(cls):
         pass
 
 if __name__ == "__main__":
