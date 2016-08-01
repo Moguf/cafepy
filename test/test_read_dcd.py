@@ -25,9 +25,8 @@ class TestReadDcd(unittest.TestCase):
         self.testclass.readHeader()
         self.assertEqual(initial_cordinates_of_test_data,self.testclass[0])
         ## check initianl_cordinate
-        print(self.testclass[9])
-        print(self.testclass._header.tstep)
-        print(self.testclass[-1])
+        self.assertEqual(final_cordinates_of_test_data,self.testclass[2999])
+        ## check final_cordinate
 
     def test_get_length_of_trajectory_with_len(self):
         print(len(self.testclass))
