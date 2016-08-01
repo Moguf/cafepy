@@ -25,7 +25,6 @@ class TestReadDcd(unittest.TestCase):
         self.testclass.readHeader()
         self.assertEqual(initial_cordinates_of_test_data,self.testclass[0])
         ## check initianl_cordinate
-        print(self.testclass[9])
         print(self.testclass._header.tstep)
         print(self.testclass[-1])
 
