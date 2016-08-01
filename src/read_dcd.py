@@ -106,11 +106,6 @@ class ReadDCD(FileIO):
         self._header.nmp_real = struct.unpack('i', b)[0]
         
 
-        
-    def readDCD(self):
-        pass
-        
-
     def _pick_data(self):
         """return binary data between 'integer' and 'integer'. 'integer' indicates the number of bytes"""
         num = struct.unpack('i', self._file.read(4))[0]
@@ -160,7 +155,20 @@ class ReadDCD(FileIO):
         
         return self._readOneFrame()
 
-        
+    def __len__(self):
+        self.readHeaderSize()
+        self._file.seek(0)
+        self._file.seek(self._header.bsize)
+        stepsize = 3 * 4 * (self._header.nmp_real + 2)
+        step = 0
+        print(self._readOneFrame())
+        try:
+            while(True):
+                step += 1
+                self._file.seek(stepsize,os.SEEK_CUR)
+        except:
+            return self._readOneFrame()
+    
     def main(self):
         self.openFile(sys.argv[1],mode="rb")
         self.readHeader()
