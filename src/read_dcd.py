@@ -20,7 +20,10 @@ import os
 import sys
 import struct
 
+#### My Module
 from file_io import FileIO
+from cafepy_error import ReadingError
+from cafepy_base import CafePyBase
 
 class DcdHeader:
     """
@@ -54,7 +57,7 @@ class DcdHeader:
         print(b'nmp_real', self.nmp_real)
 
         
-class ReadDCD(FileIO):
+class ReadDCD(CafePyBase,FileIO):
     """
     Reading a DCD file which is an output from CafeMol Software.
     """
@@ -63,6 +66,7 @@ class ReadDCD(FileIO):
         self._file = ""
         self._header = DcdHeader()
 
+        
     def readHeaderSize(self):
         self._file.seek(0)
         for i in range(3):
@@ -104,7 +108,6 @@ class ReadDCD(FileIO):
         # nmp_real
         b = self._pick_data()
         self._header.nmp_real = struct.unpack('i', b)[0]
-        
 
     def _pick_data(self):
         """return binary data between 'integer' and 'integer'. 'integer' indicates the number of bytes"""
@@ -112,7 +115,6 @@ class ReadDCD(FileIO):
         b = self._file.read(num)
         self._file.seek(4, os.SEEK_CUR)
         return b
-
     
     def _readOneFrame(self):
         coord_matrix = []
@@ -156,18 +158,30 @@ class ReadDCD(FileIO):
         return self._readOneFrame()
 
     def __len__(self):
-        self.readHeaderSize()
-        self._file.seek(0)
+        """  Returning total step of trajectory. """
+        if self._header.tstep == None:
+            raise ReadingError(__file__,"__len__","Header information is Nothing!!")
+        
         self._file.seek(self._header.bsize)
-        stepsize = 3 * 4 * (self._header.nmp_real + 2)
+        stepsize = 3 * 4 * (self._header.nmp_real + 2) - 4
+        """
+        stepsize = 
+        (int(4)) x cords(4) int(4)
+        int(4)   y cords(4) int(4)
+        int(4)   z cords(4) int(4)
+        = int(4)*5 + xyz cords(4)
+        """
         step = 0
-        print(self._readOneFrame())
         try:
             while(True):
-                step += 1
+                integer = struct.unpack('i',self._file.read(4))[0]
                 self._file.seek(stepsize,os.SEEK_CUR)
+                step += 1
         except:
-            return self._readOneFrame()
+            if step != self._header.tstep + 1:
+                print("CAUTION::Total steps in Header != Total steps in Dcd")
+            return step
+        
     
     def main(self):
         self.openFile(sys.argv[1],mode="rb")
