@@ -36,12 +36,12 @@ class TestReadDcd(unittest.TestCase):
         
     def test_get_a_trajectory_in_loop(self):
         self.testclass.readHeader()
-        #for i in self.testclass[2:3]:
-        #    print(i)
+        for i,xyz in enumerate(self.testclass[1:10]):
+            self.assertEqual(nine_trajectories[i],xyz)
         
     def test_get_trajectory_with_slieces(self):
         self.testclass.readHeader()
-        print(self.testclass[2:5])
+        self.assertEqual(nine_trajectories,self.testclass[1:10])
         #print(self.testclass[2::2])
         #print(self.testclass[2::2])
         #print(self.testclass[-2:-4])
