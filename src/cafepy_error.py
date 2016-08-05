@@ -10,9 +10,24 @@ This code is for Errors.
 
 """
 
+
 class CafePyError(Exception):
-    def __init__(self):
-        pass
+    """Base class for exceptions in this module"""
+    pass
 
+class InputError(CafePyError):
+    def __init__(self,expr,msg):
+        self.expr = expr
+        self.msg = msg
 
-raise CafePyError()
+class ReadingError(CafePyError):
+    def __init__(self,expr,func,msg):
+        self.expr = expr
+        self.func = func
+        self.msg = msg
+
+class FileError(CafePyError):
+    def __init__(self,expr,func,msg):
+        self.expr = expr
+        self.func = func
+        self.msg = msg

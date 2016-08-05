@@ -8,7 +8,7 @@ class:
 environment:
     Pyton3.5.1
 requirement:
-
+    ?Numpy1.10.1
 referance:
     Author:Naoto Hori,  https://github.com/naotohori/
     Author:mash-ito,    https://github.com/mash-it/
@@ -20,7 +20,13 @@ import os
 import sys
 import struct
 
+#### Third Parties
+#import numpy as np
+
+#### My Module
 from file_io import FileIO
+from cafepy_error import ReadingError,FileError
+from cafepy_base import CafePyBase
 
 class DcdHeader:
     """
@@ -54,7 +60,7 @@ class DcdHeader:
         print(b'nmp_real', self.nmp_real)
 
         
-class ReadDCD(FileIO):
+class ReadDCD(CafePyBase,FileIO):
     """
     Reading a DCD file which is an output from CafeMol Software.
     """
@@ -62,7 +68,8 @@ class ReadDCD(FileIO):
         self.inputfile = ""
         self._file = ""
         self._header = DcdHeader()
-
+        self.length = None
+        
     def readHeaderSize(self):
         self._file.seek(0)
         for i in range(3):
@@ -79,7 +86,8 @@ class ReadDCD(FileIO):
 
         #bdata = struct.unpack('4siii5iid9i',b)
         if bdata[0] != b'CORD' :
-            raise TypeError
+            msg = "CAUTION:%s is not Dcd formats." % self.inputfile
+            raise FileError(__file__,"readHeader()",msg)
 
         self._header.nset = bdata[1]
         self._header.istart = bdata[2]
@@ -104,7 +112,6 @@ class ReadDCD(FileIO):
         # nmp_real
         b = self._pick_data()
         self._header.nmp_real = struct.unpack('i', b)[0]
-        
 
     def _pick_data(self):
         """return binary data between 'integer' and 'integer'. 'integer' indicates the number of bytes"""
@@ -112,7 +119,6 @@ class ReadDCD(FileIO):
         b = self._file.read(num)
         self._file.seek(4, os.SEEK_CUR)
         return b
-
     
     def _readOneFrame(self):
         coord_matrix = []
@@ -132,13 +138,24 @@ class ReadDCD(FileIO):
     def __getitem__(self,key):
         """
         Supporting to get item with an index and slice. ex. self[1],self[2:4]
+        @Referance:
+        http://stackoverflow.com/questions/2936863/python-implementing-slicing-in-getitem
         """
-        num = key
-        self.readHeaderSize()
-        self._file.seek(0)
-        self._file.seek(self._header.bsize)
-        stepsize = 3 * 4 * (self._header.nmp_real + 2)
-        self._file.seek(stepsize * num,os.SEEK_CUR)
+        if isinstance(key,slice):
+            return [self[i] for i in range(*key.indices(len(self)))]
+        elif isinstance(key,int):
+            if key < 0:
+                key += len(self)
+            if key <0 or key >= len(self):
+                raise IndexError("The index (%d) is out of range." % key)
+            self.readHeaderSize()
+            self._file.seek(0)
+            self._file.seek(self._header.bsize)
+            stepsize = 3 * 4 * (self._header.nmp_real + 2)
+            self._file.seek(stepsize * key,os.SEEK_CUR)
+            return self._readOneFrame()
+        else:
+            raise TypeError("Invalid argument type.")
         
         """
         File contents.        
@@ -152,23 +169,38 @@ class ReadDCD(FileIO):
         228(long int) 57 * 4(z cordinate double) 228(long int)
         ===> stepszie = 4+57*4+4 = 4*(57+2)
         """
-        
-        return self._readOneFrame()
 
     def __len__(self):
-        self.readHeaderSize()
-        self._file.seek(0)
+        """  Returning total step of trajectory. """
+        if self.length:
+            return self.length
+        
+        if self._header.tstep == None:
+            raise ReadingError(__file__,"__len__","Header information is Nothing!!")
+        
         self._file.seek(self._header.bsize)
-        stepsize = 3 * 4 * (self._header.nmp_real + 2)
+        stepsize = 3 * 4 * (self._header.nmp_real + 2) - 4
+        """
+        stepsize = 
+        (int(4)) x cords(4) int(4)
+        int(4)   y cords(4) int(4)
+        int(4)   z cords(4) int(4)
+        = int(4)*5 + xyz cords(4)
+        """
         step = 0
-        print(self._readOneFrame())
         try:
             while(True):
-                step += 1
+                integer = struct.unpack('i',self._file.read(4))[0]
                 self._file.seek(stepsize,os.SEEK_CUR)
+                step += 1
         except:
-            return self._readOneFrame()
-    
+            step -= 1
+            if step != self._header.tstep + 1:
+                msg = "CAUTION::Total steps(%9d) in Header != Total steps(%9d) in Dcd" % (self._header.tstep + 1,step)
+                print(msg)
+            self.length = step
+            return step
+        
     def main(self):
         self.openFile(sys.argv[1],mode="rb")
         self.readHeader()
