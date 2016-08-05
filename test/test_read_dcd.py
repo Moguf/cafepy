@@ -19,7 +19,6 @@ class TestReadDcd(unittest.TestCase):
 
     def test_readHeader(self):
         self.testclass.readHeader()
-        
 
     def test_get_onestep_wiht_index(self):
         self.testclass.readHeader()
@@ -27,7 +26,7 @@ class TestReadDcd(unittest.TestCase):
         ## check initianl_cordinate
         self.assertEqual(final_cordinates_of_test_data,self.testclass[2999])
         ## check final_cordinate
-
+        
 
     def test_get_length_of_trajectory_with_len(self):
         self.testclass.readHeader()
@@ -36,14 +35,16 @@ class TestReadDcd(unittest.TestCase):
         self.assertEqual(3001,len(self.testclass))
         
     def test_get_a_trajectory_in_loop(self):
-        for i in self.testclass:
-            print(i)
+        self.testclass.readHeader()
+        #for i in self.testclass[2:3]:
+        #    print(i)
         
     def test_get_trajectory_with_slieces(self):
-        print(self.testclass[2:4])
-        print(self.testclass[2::2])
-        print(self.testclass[2::2])
-        print(self.testclass[-2:-4])
+        self.testclass.readHeader()
+        print(self.testclass[2:5])
+        #print(self.testclass[2::2])
+        #print(self.testclass[2::2])
+        #print(self.testclass[-2:-4])
 
     def test_readDCD(self):
         pass

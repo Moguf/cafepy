@@ -26,3 +26,8 @@ class ReadingError(CafePyError):
         self.func = func
         self.msg = msg
 
+class FileError(CafePyError):
+    def __init__(self,expr,func,msg):
+        self.expr = expr
+        self.func = func
+        self.msg = msg

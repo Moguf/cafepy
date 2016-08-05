@@ -8,7 +8,7 @@ class:
 environment:
     Pyton3.5.1
 requirement:
-
+    ?Numpy1.10.1
 referance:
     Author:Naoto Hori,  https://github.com/naotohori/
     Author:mash-ito,    https://github.com/mash-it/
@@ -20,9 +20,12 @@ import os
 import sys
 import struct
 
+#### Third Parties
+#import numpy as np
+
 #### My Module
 from file_io import FileIO
-from cafepy_error import ReadingError
+from cafepy_error import ReadingError,FileError
 from cafepy_base import CafePyBase
 
 class DcdHeader:
@@ -65,7 +68,7 @@ class ReadDCD(CafePyBase,FileIO):
         self.inputfile = ""
         self._file = ""
         self._header = DcdHeader()
-
+        self.length = None
         
     def readHeaderSize(self):
         self._file.seek(0)
@@ -83,7 +86,8 @@ class ReadDCD(CafePyBase,FileIO):
 
         #bdata = struct.unpack('4siii5iid9i',b)
         if bdata[0] != b'CORD' :
-            raise TypeError
+            msg = "CAUTION:%s is not Dcd formats." % self.inputfile
+            raise FileError(__file__,"readHeader()",msg)
 
         self._header.nset = bdata[1]
         self._header.istart = bdata[2]
@@ -135,12 +139,21 @@ class ReadDCD(CafePyBase,FileIO):
         """
         Supporting to get item with an index and slice. ex. self[1],self[2:4]
         """
-        num = key
-        self.readHeaderSize()
-        self._file.seek(0)
-        self._file.seek(self._header.bsize)
-        stepsize = 3 * 4 * (self._header.nmp_real + 2)
-        self._file.seek(stepsize * num,os.SEEK_CUR)
+        if isinstance(key,slice):
+            pass
+        elif isinstance(key,int):
+            if key < 0:
+                key += len(self)
+            if key <0 or key >= len(self):
+                raise IndexError("The index (%d) is out of range." % key)
+            self.readHeaderSize()
+            self._file.seek(0)
+            self._file.seek(self._header.bsize)
+            stepsize = 3 * 4 * (self._header.nmp_real + 2)
+            self._file.seek(stepsize * key,os.SEEK_CUR)
+            return self._readOneFrame()
+        else:
+            raise TypeError("Invalid argument type.")
         
         """
         File contents.        
@@ -154,11 +167,12 @@ class ReadDCD(CafePyBase,FileIO):
         228(long int) 57 * 4(z cordinate double) 228(long int)
         ===> stepszie = 4+57*4+4 = 4*(57+2)
         """
-        
-        return self._readOneFrame()
 
     def __len__(self):
         """  Returning total step of trajectory. """
+        if self.length:
+            return self.length
+        
         if self._header.tstep == None:
             raise ReadingError(__file__,"__len__","Header information is Nothing!!")
         
@@ -178,11 +192,13 @@ class ReadDCD(CafePyBase,FileIO):
                 self._file.seek(stepsize,os.SEEK_CUR)
                 step += 1
         except:
+            step -= 1
             if step != self._header.tstep + 1:
-                print("CAUTION::Total steps in Header != Total steps in Dcd")
+                msg = "CAUTION::Total steps(%9d) in Header != Total steps(%9d) in Dcd" % (self._header.tstep + 1,step)
+                print(msg)
+            self.length = step
             return step
         
-    
     def main(self):
         self.openFile(sys.argv[1],mode="rb")
         self.readHeader()
