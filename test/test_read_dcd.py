@@ -16,7 +16,7 @@ class TestReadDcd(unittest.TestCase):
         cls.testclass = ReadDCD()
         test_inpufile = "test.dcd"
         cls.testclass.openFile(test_inpufile,mode="rb")
-
+        
     def test_readHeader(self):
         self.testclass.readHeader()
         
@@ -44,7 +44,6 @@ class TestReadDcd(unittest.TestCase):
         #print(self.testclass[2::2])
         #print(self.testclass[2::2])
         #print(self.testclass[-2:-4])
-
         
     def test_readDCD(self):
         pass
