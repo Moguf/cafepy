@@ -2,6 +2,7 @@
 # coding:utf-8
 import sys
 import unittest
+from test_data_in_calc_com import *
 
 class TestCalcCOM(unittest.TestCase):
     @classmethod
@@ -32,6 +33,19 @@ class TestCalcCOM(unittest.TestCase):
     def test_calcCOMfromDCD(self):
         self.testclass.readDCD("test.dcd")
         self.testclass.calcCOMfromDCD()
+        self.assertEqual(self.testclass.com.tolist(),center_of_mass_trajectory_test_data)
+        self.testclass.close()
+        
+    def test_calcCOMfromDCD_with_index(self):
+        self.testclass.readDCD("test.dcd")
+        self.testclass.calcCOMfromDCD()
+        self.assertEqual(self.testclass.com.tolist(),center_of_mass_trajectory_test_data)
+        
+    def test_calcCOMfromDCD_with_slices(self):
+        pass
+
+    def test_calcCOMfromDCD_with_index_and_slices(self):
+        pass
         
     def test_main(self):
         self.testclass.main()

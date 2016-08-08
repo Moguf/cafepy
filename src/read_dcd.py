@@ -200,6 +200,9 @@ class ReadDCD(CafePyBase,FileIO):
                 print(msg)
             self.length = step
             return step
+
+    def close(self):
+        self._file.close()
         
     def main(self,inputfile):
         self.openFile(inputfile,mode="rb")

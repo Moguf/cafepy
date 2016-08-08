@@ -50,29 +50,32 @@ class CalcCOM(object):
         #
         pass
 
-    
     def readIndex(self):
         pass
 
     def calcCOMfromPDB(self):
         pass
 
-    def calcCOMfromDCD(self,index=[]):
-        """ Calculating the Center of mass from DCD-file."""
+    def calcCOMfromDCD(self,index=[],myslice=[]):
+        """ 
+        ### Calculating the Center of mass from DCD-file.
+        index    :  You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
+        myslice  :  You can extract trajectories for calculating COM.
+        
+        """
         if not index:
             self.com = np.average(self.data[:],axis=0)
-            print(self.com)
         else:
             pass
 
-
-
-    def writeFile(self):
+    def writeFile(self,otype=""):
         pass
 
     def writeShow(self):
         pass
 
+    def close(self):
+        self.data.close()
     
     def main(self):
         """
@@ -81,7 +84,7 @@ class CalcCOM(object):
             calc_com.py -i [dcd,pdb]-file [optional: -o outfile, -n index.file or int-values] 
         """
         pass
-
+    
     
 if __name__ == "__main__":
     tmp = CalcCOM()
