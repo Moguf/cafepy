@@ -200,15 +200,17 @@ class ReadDCD(CafePyBase,FileIO):
                 print(msg)
             self.length = step
             return step
-        
-    def main(self):
-        self.openFile(sys.argv[1],mode="rb")
-        self.readHeader()
-        self._header.show()
 
+    def close(self):
+        self._file.close()
+        
+    def main(self,inputfile):
+        self.openFile(inputfile,mode="rb")
+        self.readHeader()
+        
 
 if __name__ == "__main__":
-    tmp = ReadDCD()
-    tmp.main()
+    pass
+
     
     

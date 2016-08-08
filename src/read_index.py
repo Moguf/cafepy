@@ -9,10 +9,10 @@ environment:
 requirement:
 
 """
-from read_file import ReadFile
+from file_io import FileIO
 
 
-class ReadIndex(ReadFile):
+class ReadIndex(FileIO):
     """
     """
     def __init__(self):

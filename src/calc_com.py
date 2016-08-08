@@ -5,16 +5,23 @@
 This class caluclates the center of mass of proteins from [dcd,pdb]-files.
 
 environment:
-    Pyton3.5.1
+    Pyton >= 3.5.1
 requirement:
-
+    Numpy >= 1.11
+    Scipy >= 
 example:
     cafepy com -i test.pdb[.dcd]
 """
 
+## 3rd Parties
+import numpy as np
+import scipy as sc
+
+## My module
 from read_dcd import ReadDCD
 from read_pdb import ReadPDB
-from read_index import readIndex
+from read_index import ReadIndex
+
 
 class CalcCOM(object):
     """
@@ -29,12 +36,16 @@ class CalcCOM(object):
         # pycafe.py com -i [dcd,pdb]-infile [optional: -o outfile, -n index.file or int-value] 
     """
     def __init__(self):
-        pass
+        self.dcdfile = ""
+        self.pdbfile = ""
+        self.data = []
+        
+    def readDCD(self,inputfile):
+        self.dcdfile = inputfile
+        self.data = ReadDCD()
+        self.data.main(inputfile)
 
-    def readDCD(self):
-        #
-        pass
-
+        
     def readPDB(self):
         #
         pass
@@ -45,16 +56,26 @@ class CalcCOM(object):
     def calcCOMfromPDB(self):
         pass
 
-    def calcCOMfromDCD(self):
-        pass
+    def calcCOMfromDCD(self,index=[],myslice=[]):
+        """ 
+        ### Calculating the Center of mass from DCD-file.
+        index    :  You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
+        myslice  :  You can extract trajectories for calculating COM.
+        
+        """
+        if not index:
+            self.com = np.average(self.data[:],axis=0)
+        else:
+            pass
 
-
-    def writeFile(self):
+    def writeFile(self,otype=""):
         pass
 
     def writeShow(self):
         pass
 
+    def close(self):
+        self.data.close()
     
     def main(self):
         """
@@ -63,7 +84,7 @@ class CalcCOM(object):
             calc_com.py -i [dcd,pdb]-file [optional: -o outfile, -n index.file or int-values] 
         """
         pass
-
+    
     
 if __name__ == "__main__":
     tmp = CalcCOM()
