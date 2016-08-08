@@ -12,8 +12,8 @@ example:
     cafepy com -i test.pdb[.dcd]
 """
 
-from read_dcd import ReadDcd
-from read_pdb import ReadPdb
+from read_dcd import ReadDCD
+from read_pdb import ReadPDB
 from read_index import readIndex
 
 class CalcCOM(object):
