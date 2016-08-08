@@ -4,16 +4,21 @@ import sys
 import unittest
 
 class TestCalcCOM(unittest.TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         sys.path.append("../src")
         from calc_com import CalcCOM
-        self.testclass = CalcCOM()
+        cls.testclass = CalcCOM()
         
+    def setUp(self):
+        pass
+    
     def test_readDcd(self):
-        self.testclass.readDCD()
+        self.testclass.readDCD("test.dcd")
         
-
+        
     def test_readPDB(self):
+        pass
         self.testclass.readPDB()
         
     def test_readIndex(self):
@@ -21,9 +26,11 @@ class TestCalcCOM(unittest.TestCase):
 
         
     def test_calcCOMfromPDB(self):
+        pass
         self.testclass.calcCOMfromPDB()
 
     def test_calcCOMfromDCD(self):
+        self.testclass.readDCD("test.dcd")
         self.testclass.calcCOMfromDCD()
         
     def test_main(self):
