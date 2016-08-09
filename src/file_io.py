@@ -29,7 +29,7 @@ class FileIO(object):
         return self._file
 
     def closeFile(self):
-        pass
+        self._file.close()
         
     def __str__(self):
         pass
