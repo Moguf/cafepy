@@ -23,8 +23,6 @@ from read_pdb import ReadPDB
 from read_index import ReadIndex
 from write_movie import WriteMovie
 
-
-
 class CalcCOM(object):
     """
     Calculating the center of mass from [dcd,pdb]-files
@@ -73,7 +71,6 @@ class CalcCOM(object):
     def writeFile(self,otype=""):
         if otype == "movie":
             pass
-
 
     def writeShow(self):
         pass
