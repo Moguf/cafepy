@@ -13,7 +13,9 @@ This code is for Errors.
 
 class CafePyError(Exception):
     """Base class for exceptions in this module"""
-    pass
+    def __str__(self):
+        return self.msg
+        
 
 class InputError(CafePyError):
     def __init__(self,expr,msg):
@@ -31,3 +33,9 @@ class FileError(CafePyError):
         self.expr = expr
         self.func = func
         self.msg = msg
+
+class CmdLineError(CafePyError):
+    def __init__(self,msg):
+        self.msg = msg
+
+        

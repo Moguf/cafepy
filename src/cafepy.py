@@ -16,6 +16,7 @@ import argparse
 
 ### My module
 #import calc_distance
+from cafepy_error import CmdLineError
 import calc_com
 
 class CafePy(object):
@@ -28,8 +29,15 @@ class CafePy(object):
         self.handleArgs()
         
     def handleArgs(self):
-        pass
-        
+        if None == self.args.calculation_type:
+            msg = "calculation_type is not set!!"
+            msg += "choise ['distance','cmap','com']"
+            raise CmdLineError(msg)
+
+        if "com" == self.args.calculation_type:
+            pass
+
+            
     def _initArgs(self):
         message = "Analyzing CafeMol outputs."
         parser = argparse.ArgumentParser(description=message)
@@ -38,9 +46,9 @@ class CafePy(object):
         
         parser.add_argument('-f','--inputfile',nargs='?',help='input file name[.dcd,.pdb,ninfo,psf]')
         
-        args = parser.parse_args()
-        print(args)
-        return args
+        self.args = parser.parse_args()
+
+        return self.args
         
 if __name__ == "__main__":
     tmp = CafePy()
