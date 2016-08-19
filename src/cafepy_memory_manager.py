@@ -15,18 +15,18 @@ Python don't set Memory Limit.We need to set Memory Limit to protect our Machine
 
 import resource
 
-class cafeMemManager:
+class CafeMemManager:
     def __init__(self):
         self.maxsize = 16
-        pass
+
     def setLimitMemory(self,maxsize):
         # set Max Memory size.
         # maxsize:unit is Gb.
-        self.maxsize *= 1024*1024*1024
+        self.maxsize = 1024*1024*1024*maxsize
         soft, hard = resource.getrlimit(resource.RLIMIT_AS)
         resource.setrlimit(resource.RLIMIT_AS,(self.maxsize,hard))
         print('Set Memoy Limit\t:\t{}Gb;'.format(maxsize))
         
 if __name__ == '__main__':
-    tmp = cafeMemManager()
+    pass
     

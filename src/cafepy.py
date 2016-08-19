@@ -16,15 +16,17 @@ import argparse
 
 ### My module
 #import calc_distance
-from cafepy_error import CmdLineError,FileError
 from calc_com import CalcCOM
-from cafepy_memory_manager import cafeMemManager
+from cafepy_stdout import CafepyStdout
+from cafepy_error import CmdLineError,FileError
+from cafepy_memory_manager import CafeMemManager
 
 class CafePy(object):
     #This class is main class of cafepy and analyizes command-line argments.
     def __init__(self):
-        cMM = cafeMemManager()
-        cMM.setLimitMemory(16)
+        CMM = CafeMemManager()
+        CMM.setLimitMemory(16)
+        self.anim = CafepyStdout()
         ## Memory Limit: 16 Gb.
         self.args = []
         self.calc_msg = {}
@@ -37,7 +39,6 @@ class CafePy(object):
 
     def initSet(self):
         self.calc_msg["com"] = "Center of Mass."
-
         
     def handleArgs(self):
         ctype = self.args.calculation_type
@@ -52,6 +53,7 @@ class CafePy(object):
             raise CmdLineError(msg)
         
         if "com" == ctype:
+            self.anim.start()
             self.checkFlags(self.args,'i','o')
             com = CalcCOM()
             com.readDCD(self.args.inputfile)
