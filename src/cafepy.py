@@ -24,6 +24,7 @@ class CafePy(object):
     def __init__(self):
         self.args = []
         self.calc_msg = {}
+        self.header = ""
         self.initSet()
         
     def main(self):
@@ -36,29 +37,40 @@ class CafePy(object):
         
     def handleArgs(self):
         ctype = self.args.calculation_type
-        print("CALCULATION\t\t:\t{}".format(self.calc_msg[ctype]))
+        header = "CALCULATION\t\t:\t{};".format(self.calc_msg[ctype])
+        self.header += header
+        print(header)
+        
         if None == ctype:
             msg = "\nCAUTION:calculation_type is not set!!\n"
             msg += "CAUTION:choise ['distance','cmap','com']\n"
             msg += "PLEASE: cafepy -h "
             raise CmdLineError(msg)
+        
         if "com" == ctype:
             self.checkFlags(self.args,'i','o')
             com = CalcCOM()
             com.readDCD(self.args.inputfile)
             com.calcCOMfromDCD()
-            com.writeFile(self.args.outputfile)
+            com.writeFile(self.args.outputfile,self.header)
             com.close()
             return
-
         
     def checkFlags(self,args,*flags):
         if 'i' in flags:
             msg = "\nCOUTION: No ouput_file !! ex) cafepy [...] -f input-file"
             self._checkArg(args.inputfile,msg)
+            header = "INPUTFILE\t\t:\t{};".format(args.inputfile)
+            print(header)
+            self.header += header
+
         if 'o' in flags:
             msg = "\nCOUTION: No input_file !! ex) cafepy [...] -o output-file"
             self._checkArg(args.outputfile,msg)
+            header = "OUTPUTFILE\t\t:\t{};".format(args.outputfile)
+            print(header)
+            self.header += header
+    
 
     def _checkArg(self,arg,msg):
         if not arg:

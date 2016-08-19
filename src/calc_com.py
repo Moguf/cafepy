@@ -42,7 +42,6 @@ class CalcCOM(object):
         self.data = []
         
     def readDCD(self,inputfile):
-        print("INPUTFILE\t\t:\t{}.".format(inputfile))
         self.dcdfile = inputfile
         self.data = ReadDCD()
         self.data.main(inputfile)
@@ -70,12 +69,10 @@ class CalcCOM(object):
         else:
             pass
 
-    def writeFile(self,outputfile,otype=""):
-        print("OUTPUTFILE\t\t:\t{}.".format(outputfile))
+    def writeFile(self,outputfile,header= ""):
+        np.savetxt(outputfile,self.com,header=header,fmt="%.8e")
 
-        if otype == "movie":
-            pass
-
+        
     def writeShow(self):
         pass
 
