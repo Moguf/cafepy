@@ -17,16 +17,16 @@ import resource
 
 class cafeMemManager:
     def __init__(self):
+        self.maxsize = 16
         pass
     def setLimitMemory(self,maxsize):
         # set Max Memory size.
         # maxsize:unit is Gb.
-        maxsize *= 1024*1024*1024
-        print(getattr(resource.getrusage(resource.RUSAGE_SELF),'ru_ixrss'))
+        self.maxsize *= 1024*1024*1024
         soft, hard = resource.getrlimit(resource.RLIMIT_AS)
-        resource.setrlimit(resource.RLIMIT_AS,(maxsize,hard))
-
-
+        resource.setrlimit(resource.RLIMIT_AS,(self.maxsize,hard))
+        print('Set Memoy Limit\t:\t{}Gb;'.format(maxsize))
+        
 if __name__ == '__main__':
     tmp = cafeMemManager()
     
