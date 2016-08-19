@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-from distutils.core import setup
-
+#from distutils.core import setup
+from setuptools import setup
 
 setup(name='CafePy',
       version='0.1',
@@ -11,4 +11,6 @@ setup(name='CafePy',
       author_email='kbu94984@gmail.com',
       url='',
       packages=['src'],
+      install_requires=['numpy','scipy','matplotlib'],
+      scripts=['src/cafepy.py'],
     )
