@@ -10,7 +10,6 @@ requirement:
 
 """
 
-
 class FileIO(object):
     """
     This class fundamental class for reading and writing files.
@@ -24,10 +23,11 @@ class FileIO(object):
         try:
             self._file = open(filename,mode)
         except:
-            raise TypeError
+            raise FileExistsError
         
         return self._file
 
+    
     def closeFile(self):
         self._file.close()
         

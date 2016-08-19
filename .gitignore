@@ -90,8 +90,11 @@ ENV/
 
 # For emacs
 *~
+\#*
 
 # For my test-code.
 test.py
 test2.py
 test3.py
+
+!.gitkeep

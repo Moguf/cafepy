@@ -16,28 +16,55 @@ import argparse
 
 ### My module
 #import calc_distance
-from cafepy_error import CmdLineError
-import calc_com
+from cafepy_error import CmdLineError,FileError
+from calc_com import CalcCOM
 
 class CafePy(object):
     #This class is main class of cafepy and analyizes command-line argments.
     def __init__(self):
         self.args = []
-
+        self.calc_msg = {}
+        self.initSet()
+        
     def main(self):
         self._initArgs()
         self.handleArgs()
+
+    def initSet(self):
+        self.calc_msg["com"] = "Center of Mass."
+
         
     def handleArgs(self):
-        if None == self.args.calculation_type:
-            msg = "calculation_type is not set!!"
-            msg += "choise ['distance','cmap','com']"
+        ctype = self.args.calculation_type
+        print("CALCULATION\t\t:\t{}".format(self.calc_msg[ctype]))
+        if None == ctype:
+            msg = "\nCAUTION:calculation_type is not set!!\n"
+            msg += "CAUTION:choise ['distance','cmap','com']\n"
+            msg += "PLEASE: cafepy -h "
             raise CmdLineError(msg)
+        if "com" == ctype:
+            self.checkFlags(self.args,'i','o')
+            com = CalcCOM()
+            com.readDCD(self.args.inputfile)
+            com.calcCOMfromDCD()
+            com.writeFile(self.args.outputfile)
+            com.close()
+            return
 
-        if "com" == self.args.calculation_type:
-            pass
+        
+    def checkFlags(self,args,*flags):
+        if 'i' in flags:
+            msg = "\nCOUTION: No ouput_file !! ex) cafepy [...] -f input-file"
+            self._checkArg(args.inputfile,msg)
+        if 'o' in flags:
+            msg = "\nCOUTION: No input_file !! ex) cafepy [...] -o output-file"
+            self._checkArg(args.outputfile,msg)
 
-            
+    def _checkArg(self,arg,msg):
+        if not arg:
+            msg = msg
+            raise FileError(msg)
+        
     def _initArgs(self):
         message = "Analyzing CafeMol outputs."
         parser = argparse.ArgumentParser(description=message)
@@ -45,6 +72,7 @@ class CafePy(object):
 
         
         parser.add_argument('-f','--inputfile',nargs='?',help='input file name[.dcd,.pdb,ninfo,psf]')
+        parser.add_argument('-o','--outputfile',nargs='?',help='output file name[.dat]')
         
         self.args = parser.parse_args()
 

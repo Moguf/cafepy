@@ -18,6 +18,7 @@ import numpy as np
 import scipy as sc
 
 ## My module
+from file_io import FileIO
 from read_dcd import ReadDCD
 from read_pdb import ReadPDB
 from read_index import ReadIndex
@@ -41,10 +42,11 @@ class CalcCOM(object):
         self.data = []
         
     def readDCD(self,inputfile):
+        print("INPUTFILE\t\t:\t{}.".format(inputfile))
         self.dcdfile = inputfile
         self.data = ReadDCD()
         self.data.main(inputfile)
-
+        
         
     def readPDB(self):
         #
@@ -68,7 +70,9 @@ class CalcCOM(object):
         else:
             pass
 
-    def writeFile(self,otype=""):
+    def writeFile(self,outputfile,otype=""):
+        print("OUTPUTFILE\t\t:\t{}.".format(outputfile))
+
         if otype == "movie":
             pass
 

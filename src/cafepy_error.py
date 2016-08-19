@@ -9,14 +9,11 @@ This code is for Errors.
 # requirements:
 
 """
-
-
 class CafePyError(Exception):
     """Base class for exceptions in this module"""
     def __str__(self):
         return self.msg
         
-
 class InputError(CafePyError):
     def __init__(self,expr,msg):
         self.expr = expr
@@ -29,9 +26,7 @@ class ReadingError(CafePyError):
         self.msg = msg
 
 class FileError(CafePyError):
-    def __init__(self,expr,func,msg):
-        self.expr = expr
-        self.func = func
+    def __init__(self,msg):
         self.msg = msg
 
 class CmdLineError(CafePyError):
