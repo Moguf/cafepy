@@ -6,12 +6,13 @@ These scripts are for analyzing CafeMol outputs.
 
 ## Set Up
 ```bash
-python3 -m setuptools numpy scipy matplotlib
-
+python3 -m pip install -r requirements.txt
+# or
+pip3 install -r requirements.txt
 ```
 ## build & install
 ```
-cd scipy
+cd cafepy
 python3 setup.py build
 python3 setup.py install
 ```
