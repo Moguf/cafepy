@@ -18,10 +18,14 @@ import argparse
 #import calc_distance
 from cafepy_error import CmdLineError,FileError
 from calc_com import CalcCOM
+from cafepy_memory_manager import cafeMemManager
 
 class CafePy(object):
     #This class is main class of cafepy and analyizes command-line argments.
     def __init__(self):
+        cMM = cafeMemManager()
+        cMM.setLimitMemory(16)
+        ## Memory Limit: 16 Gb.
         self.args = []
         self.calc_msg = {}
         self.header = ""
