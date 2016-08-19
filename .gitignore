@@ -97,4 +97,6 @@ test.py
 test2.py
 test3.py
 
+build/*
+dump/*
 !.gitkeep
