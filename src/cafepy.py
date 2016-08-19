@@ -11,7 +11,7 @@ is developed by Takada-Lab in Kyoto Univ. .
 # requirements:
 
 """
-
+import time
 import argparse
 
 ### My module
@@ -53,13 +53,14 @@ class CafePy(object):
             raise CmdLineError(msg)
         
         if "com" == ctype:
-            self.anim.start()
             self.checkFlags(self.args,'i','o')
+            self.anim.start()
             com = CalcCOM()
             com.readDCD(self.args.inputfile)
             com.calcCOMfromDCD()
             com.writeFile(self.args.outputfile,self.header)
             com.close()
+            self.anim.end()
             return
         
     def checkFlags(self,args,*flags):

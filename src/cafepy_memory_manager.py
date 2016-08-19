@@ -9,7 +9,7 @@ Python don't set Memory Limit.We need to set Memory Limit to protect our Machine
 # Requirements:
 
 # References:
-    1) in Ch13.4 Python Coookbook,Third edition [By David Beazley,Brian K. Jones]
+    1) in Ch13.4 Python Coookbook,Third edition [By David Beazley,Brian K. Jones], 2013.
 
 """
 
