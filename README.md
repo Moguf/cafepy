@@ -2,7 +2,22 @@
 These scripts are for analyzing CafeMol outputs.
 
 ## Requirements
-- setuptools >= 20.7
+- python3 >= 3.5.1
+
+* Install virtualenv. (RECOMMEND:for protecting your Home environment.)
+```bash
+python3 -m pip install -U pip setuptools
+python3 -m pip install virtualenv
+# or
+pip3 install virtualenv
+```
+* activate virtualenv
+```bash
+virtualenv -p python3 venv
+source venv/bin/activate
+# Removing virtual environment
+# (venv) deactivate 
+```
 
 ## Set Up
 ```bash
