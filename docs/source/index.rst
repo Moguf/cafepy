@@ -10,9 +10,10 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+              
+   cafepy
 
-.. autoclass:: cafepy.cafepy.CafePy
-   :members:
+      
    
 
 

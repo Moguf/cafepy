@@ -1,7 +1,7 @@
 2#!/usr/bin/env python3
 # coding: utf-8
 """
-#: Author: Mogu 
+* Author: Mogu 
 This code is for analyizing CafeMol Outputs.
 CafeMol which is one of the Molecular Dynamics simulation software 
 is developed by Takada-Lab in Kyoto Univ. .
