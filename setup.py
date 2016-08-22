@@ -5,12 +5,12 @@
 from setuptools import setup
 
 setup(name='CafePy',
-      version='0.1',
+      version='0.0.1',
       description='Python Scripts For Analizing CafeMol Data.',
       author='Mogu',
       author_email='kbu94984@gmail.com',
       url='',
       packages=['cafepy'],
-      install_requires=['numpy','scipy','matplotlib'],
-      scripts=['src/cafepy.py'],
+      #install_requires=['numpy','scipy','matplotlib'],
+      scripts=['cafepy/cafepy.py'],
     )

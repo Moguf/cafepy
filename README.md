@@ -34,6 +34,6 @@ python3 setup.py install
 
 ## Example:
 ```bash
-cafepy com -f filename.dcd -o output.file
+python3 -m cafepy com -f filename.dcd -o output.file
 
 ```

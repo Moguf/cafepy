@@ -31,13 +31,13 @@ class CafePy(object):
         self.args = []
         self.calc_msg = {}
         self.header = ""
-        self.initSet()
+        self._initSet()
         
-    def main(self):
+    def __main__(self):
         self._initArgs()
         self.handleArgs()
 
-    def initSet(self):
+    def _initSet(self):
         self.calc_msg["com"] = "Center of Mass."
         
     def handleArgs(self):
@@ -53,7 +53,7 @@ class CafePy(object):
             raise CmdLineError(msg)
         
         if "com" == ctype:
-            self.checkFlags(self.args,'i','o')
+            self._checkFlags(self.args,'i','o')
             self.anim.start()
             com = CalcCOM()
             com.readDCD(self.args.inputfile)
@@ -63,7 +63,7 @@ class CafePy(object):
             self.anim.end()
             return
         
-    def checkFlags(self,args,*flags):
+    def _checkFlags(self,args,*flags):
         if 'i' in flags:
             msg = "\nCOUTION: No ouput_file !! ex) cafepy [...] -f input-file"
             self._checkArg(args.inputfile,msg)
@@ -95,9 +95,9 @@ class CafePy(object):
         self.args = parser.parse_args()
 
         return self.args
-        
+
+
 if __name__ == "__main__":
-    tmp = CafePy()
-    tmp.main()
-    
+    tmp = cafepy()
+    tmp.__main__()
 
