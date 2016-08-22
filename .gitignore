@@ -104,5 +104,4 @@ test3.py
 build/*
 dump/*
 venv/*
-docs/*
 !.gitkeep
