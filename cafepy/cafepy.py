@@ -16,10 +16,10 @@ import argparse
 
 ### My module
 #import calc_distance
-from calc_com import CalcCOM
-from cafepy_stdout import CafepyStdout
-from cafepy_error import CmdLineError,FileError
-from cafepy_memory_manager import CafeMemManager
+from .calc_com import CalcCOM
+from .cafepy_stdout import CafepyStdout
+from .cafepy_error import CmdLineError,FileError
+from .cafepy_memory_manager import CafeMemManager
 
 class CafePy(object):
     #This class is main class of cafepy and analyizes command-line argments.
@@ -33,7 +33,7 @@ class CafePy(object):
         self.header = ""
         self._initSet()
         
-    def __main__(self):
+    def main(self):
         self._initArgs()
         self.handleArgs()
 
@@ -98,6 +98,6 @@ class CafePy(object):
 
 
 if __name__ == "__main__":
-    tmp = cafepy()
-    tmp.__main__()
+    tmp = CafePy()
+    tmp.main()
 
