@@ -88,7 +88,6 @@ class CafePy(object):
         message = "Analyzing CafeMol outputs."
         parser = argparse.ArgumentParser(description=message)
         parser.add_argument('calculation_type',nargs='?',type=str,choices=['distance','cmap','com'],help='choose calculation type.')
-
         
         parser.add_argument('-f','--inputfile',nargs='?',help='input file name[.dcd,.pdb,ninfo,psf]')
         parser.add_argument('-o','--outputfile',nargs='?',help='output file name[.dat]')

@@ -1,0 +1,4 @@
+matplotlib>=1.5.1
+numpy>=1.11.0
+scipy>=0.16.0
+setuptools>=18.2
