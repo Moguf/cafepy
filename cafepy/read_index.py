@@ -9,8 +9,7 @@ environment:
 requirement:
 
 """
-from .file_io import FileIO
-
+from file_io import FileIO
 
 class ReadIndex(FileIO):
     """

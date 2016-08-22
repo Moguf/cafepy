@@ -24,9 +24,9 @@ import struct
 #import numpy as np
 
 #### My Module
-from .file_io import FileIO
-from .cafepy_error import ReadingError,FileError
-from .cafepy_base import CafePyBase
+from file_io import FileIO
+from cafepy_error import ReadingError,FileError
+from cafepy_base import CafePyBase
 
 class DcdHeader:
     """

@@ -1,14 +1,14 @@
-#!/usr/bin/env python3
+2#!/usr/bin/env python3
 # coding: utf-8
 """
-### Author: Mogu ###
+#: Author: Mogu 
 This code is for analyizing CafeMol Outputs.
 CafeMol which is one of the Molecular Dynamics simulation software 
 is developed by Takada-Lab in Kyoto Univ. .
 
-# environment:
+: environment:
     Python3.5.1
-# requirements:
+: requirements:
 
 """
 import time
@@ -16,13 +16,16 @@ import argparse
 
 ### My module
 #import calc_distance
-from .calc_com import CalcCOM
-from .cafepy_stdout import CafepyStdout
-from .cafepy_error import CmdLineError,FileError
-from .cafepy_memory_manager import CafeMemManager
+from calc_com import CalcCOM
+from cafepy_stdout import CafepyStdout
+from cafepy_error import CmdLineError,FileError
+from cafepy_memory_manager import CafeMemManager
+
+
 
 class CafePy(object):
-    #This class is main class of cafepy and analyizes command-line argments.
+    """ This class is main class of cafepy and analyizes command-line argments. """
+    #: Author Mogu
     def __init__(self):
         CMM = CafeMemManager()
         CMM.setLimitMemory(16)
