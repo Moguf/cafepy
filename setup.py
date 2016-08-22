@@ -10,7 +10,7 @@ setup(name='CafePy',
       author='Mogu',
       author_email='kbu94984@gmail.com',
       url='',
-      packages=['src'],
+      packages=['cafepy'],
       install_requires=['numpy','scipy','matplotlib'],
       scripts=['src/cafepy.py'],
     )

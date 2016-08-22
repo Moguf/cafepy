@@ -79,7 +79,7 @@ celerybeat-schedule
 .env
 
 # virtualenv
-venv/
+#venv/
 ENV/
 
 # Spyder project settings
@@ -99,4 +99,5 @@ test3.py
 
 build/*
 dump/*
+venv/*
 !.gitkeep
