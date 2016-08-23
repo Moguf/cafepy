@@ -34,7 +34,7 @@ class CalcCOM(object):
         tmp.calcCOMfromDCD()     or  tmp.calcCOMfromPDB()
         tmp.writeFile("outfile") or  tmp.writeShow()
     # In Terminal.
-        # pycafe.py com -i [dcd,pdb]-infile [optional: -o outfile, -n index.file or int-value] 
+        # pycafe.py com -f [dcd,pdb]-infile [optional: -o outfile, -nf index.file or -n int-value] 
     """
     def __init__(self):
         self.dcdfile = ""
@@ -46,7 +46,6 @@ class CalcCOM(object):
         self.data = DCD()
         self.data.main(inputfile)
         
-        
     def readPDB(self):
         #
         pass
@@ -57,17 +56,20 @@ class CalcCOM(object):
     def calcCOMfromPDB(self):
         pass
 
-    def calcCOMfromDCD(self,index=[],myslice=[]):
+    def calcCOMfromDCD(self,atom_index=[],traj_index=[]):
         """ 
         ### Calculating the Center of mass from DCD-file.
-        index    :  You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
-        myslice  :  You can extract trajectories for calculating COM.
+        atom_index    :  You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
+        traj_index  :  You can extract trajectories for calculating COM.
         
         """
-        if not index:
+        if not atom_index:
             self.com = np.average(self.data[:],axis=0)
         else:
-            pass
+            ndata = np.array(self.data)
+            self.com = np.average(ndata[:,index],axis=0)
+            del ndata
+
 
     def writeFile(self,outputfile,header= ""):
         np.savetxt(outputfile,self.com,header=header,fmt="%.8e")

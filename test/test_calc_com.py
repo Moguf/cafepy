@@ -37,7 +37,7 @@ class TestCalcCOM(unittest.TestCase):
         
     def test_calcCOMfromDCD_with_index(self):
         self.testclass.readDCD("test.dcd")
-        self.testclass.calcCOMfromDCD()
+        self.testclass.calcCOMfromDCD([1,2,3,4,5])
         self.assertEqual(self.testclass.com.tolist(),center_of_mass_trajectory_test_data)
         
     def test_calcCOMfromDCD_with_slices(self):

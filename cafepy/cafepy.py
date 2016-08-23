@@ -57,11 +57,11 @@ class CafePy(object):
             raise CmdLineError(msg)
         
         if "com" == ctype:
-            self._checkFlags(self.args,'f','o','n','nf')
+            flags = self._checkFlags(self.args,'f','o','n','nf')
             self.anim.start()
             com = CalcCOM()
             com.readDCD(self.args.inputfile)
-            com.calcCOMfromDCD()
+            com.calcCOMfromDCD(index=flags['index'])
             com.writeFile(self.args.outputfile,self.header)
             com.close()
             self.anim.end()
