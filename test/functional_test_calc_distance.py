@@ -7,7 +7,6 @@ import subprocess
 
 class CommandLineCalcDistanceTest(unittest.TestCase):
     def setUp(self):
-        sys.path.append("../src")
         from cafepy import CafePy
         self.testclass = CafePy()
         self.cmdline_list = ["python3","../src/cafepy.py",""]

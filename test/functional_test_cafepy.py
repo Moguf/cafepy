@@ -9,7 +9,6 @@ from unittest.mock import patch
 
 class CommandLineCafePyTest(unittest.TestCase):
     def setUp(self):
-        sys.path.append("../src")
         from cafepy import CafePy
         self.testclass = CafePy()
         self.cmdline_list = ["python3","../src/cafepy.py",""]
@@ -26,7 +25,6 @@ class CommandLineCafePyTest(unittest.TestCase):
         cmdline = " ".join(tmp)
         outputs = subprocess.check_output(cmdline,shell=True)
 
-                   
 
     def tearDown(self):
         pass

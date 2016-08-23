@@ -11,8 +11,7 @@ from test_data_in_read_pdb import *
 class TestReadDcd(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        sys.path.append("../src")
-        from read_pdb import ReadPDB
+        from cafepy import ReadPDB
         cls.testclass = ReadPDB()
         test_inpufile = "test.pdb"
         cls.testclass.openFile(test_inpufile,mode="r")

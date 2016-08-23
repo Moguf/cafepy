@@ -8,7 +8,6 @@ class TestCafePy(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
-        sys.path.append("../src")
         from cafepy import CafePy
         cls.testclass = CafePy()
         cls.initArgs = cls.testclass._initArgs()

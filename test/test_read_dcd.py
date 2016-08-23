@@ -6,13 +6,12 @@ import unittest
 
 from unittest.mock import patch
 
-from test_data import *
+from test_data_in_read_dcd import *
 
 class TestReadDcd(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        sys.path.append("../src")
-        from read_dcd import ReadDCD
+        from cafepy import ReadDCD
         cls.testclass = ReadDCD()
         test_inpufile = "test.dcd"
         cls.testclass.openFile(test_inpufile,mode="rb")
