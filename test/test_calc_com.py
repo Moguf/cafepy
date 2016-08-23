@@ -7,8 +7,7 @@ from test_data_in_calc_com import *
 class TestCalcCOM(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        sys.path.append("../src")
-        from calc_com import CalcCOM
+        from cafepy import CalcCOM
         cls.testclass = CalcCOM()
         
     def setUp(self):

@@ -4,5 +4,5 @@ CafePy project
 submodule
 =========
 
-.. autoclass:: cafepy.cafepy.CafePy
+.. autoclass:: cafepy.CafePy
    :members:

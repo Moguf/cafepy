@@ -16,10 +16,10 @@ import argparse
 
 ### My module
 #import calc_distance
-from calc_com import CalcCOM
-from cafepy_stdout import CafepyStdout
-from cafepy_error import CmdLineError,FileError
-from cafepy_memory_manager import CafeMemManager
+from .calc_com import CalcCOM
+from .cafepy_stdout import CafepyStdout
+from .cafepy_error import CmdLineError,FileError
+from .cafepy_memory_manager import CafeMemManager
 
 
 
