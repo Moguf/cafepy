@@ -20,6 +20,11 @@ class FileIO(object):
         self._file = ""
 
     def openFile(self,filename,mode='r'):
+        """
+
+        """
+        
+        self.inputfile = filename
         try:
             self._file = open(filename,mode)
         except:

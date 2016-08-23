@@ -19,9 +19,9 @@ import scipy as sc
 
 ## My module
 from .file_io import FileIO
-from .read_dcd import ReadDCD
-from .read_pdb import ReadPDB
-from .read_index import ReadIndex
+from .read_dcd import DCD
+from .read_pdb import PDB
+from .read_index import Index
 from .write_movie import WriteMovie
 
 class CalcCOM(object):
@@ -43,7 +43,7 @@ class CalcCOM(object):
         
     def readDCD(self,inputfile):
         self.dcdfile = inputfile
-        self.data = ReadDCD()
+        self.data = DCD()
         self.data.main(inputfile)
         
         

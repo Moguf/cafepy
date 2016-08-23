@@ -3,7 +3,7 @@
 """
 ###  Editer:Mogu  ###
 class:
-    ReadPDB: reading PDB(Protein data Bank)-files.
+    PDB: reading PDB(Protein data Bank)-files.
 environment:
     Pyton3.5.1
 requirement:
@@ -25,7 +25,7 @@ from .file_io import FileIO
 from .cafepy_error import ReadingError,FileError
 from .cafepy_base import CafePyBase
         
-class ReadPDB(CafePyBase,FileIO):
+class PDB(CafePyBase,FileIO):
     """
     Reading a PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
@@ -71,7 +71,7 @@ class ReadPDB(CafePyBase,FileIO):
         self.openFile()
 
 
-class ReadCGPDB(CafePyBase,FileIO):
+class CGPDB(CafePyBase,FileIO):
     """
     Reading a Coarse-Grained PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
@@ -80,7 +80,7 @@ class ReadCGPDB(CafePyBase,FileIO):
 
     
 if __name__ == "__main__":
-    tmp = ReadPDB()
+    tmp = PDB()
     tmp.main()
     
 

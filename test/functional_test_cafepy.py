@@ -11,7 +11,6 @@ class CommandLineCafePyTest(unittest.TestCase):
     def setUp(self):
         from cafepy import CafePy
         self.testclass = CafePy()
-        self.cmdline_list = ["python3","../src/cafepy.py",""]
         
     def test_command_line_help_discription(self):
         tmp = self.cmdline_list[:]

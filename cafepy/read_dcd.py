@@ -60,7 +60,7 @@ class DcdHeader:
         print(b'nmp_real', self.nmp_real)
 
         
-class ReadDCD(CafePyBase,FileIO):
+class DCD(CafePyBase,FileIO):
     """
     Reading a DCD file which is an output from CafeMol Software.
     """
