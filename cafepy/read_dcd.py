@@ -208,7 +208,6 @@ class DCD(CafePyBase,FileIO):
         self.openFile(inputfile,mode="rb")
         self.readHeader()
         
-
 if __name__ == "__main__":
     pass
 

@@ -40,7 +40,7 @@ class Index(FileIO):
         """
         return list-object
         """
-        fp = self.openFile(filename)
+        fp = self.openFile(filename,'r')
 
         out = list(set([int(i) for i in fp.read().split() if i[0] != "#"]))
         ## read integer from file, ignore "#" line ,and dicard dupilicate number.
