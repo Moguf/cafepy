@@ -67,7 +67,7 @@ class CalcCOM(object):
             self.com = np.average(self.data[:],axis=0)
         else:
             ndata = np.array(self.data)
-            self.com = np.average(ndata[:,index],axis=0)
+            self.com = np.average(ndata[:,atom_index],axis=0)
             del ndata
 
 
