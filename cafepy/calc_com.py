@@ -20,7 +20,7 @@ import scipy as sc
 ## My module
 from .file_io import FileIO
 from .dcdfile import DCD
-from .read_pdb import PDB
+from .pdbfile import PDB
 from .read_index import Index
 from .write_movie import WriteMovie
 

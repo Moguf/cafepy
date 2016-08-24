@@ -13,7 +13,7 @@ example:
 """
 
 from .dcdfile import DCD
-from .read_pdb import PDB
+from .pdbfile import PDB
 from .read_index import Index
 
 class CalcDistance(object):
