@@ -29,12 +29,13 @@ class PDB(CafePyBase,FileIO):
     """
     Reading a PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
-    def __init__(self):
+    def __init__(self,inputfile):
         FileIO.__init__(self)
+        self.inputfile = inputfile
         self.coard = []
         self.row_data = []
         
-    def readPDB(self):
+    def readATOM(self):
         pdb_record = ["HEADER","OBSLTE","TITLE","SPLIT","CAVEAT","COMPND","SOURCE","KEYWDS"\
                     ,"REVDAT","SPRSDE","JRNL","REMARK","DBREF","SEQADV","SEQRES","MODRES"\
                     ,"HET","HETNAM","HETSYM","FORMUL","HELIX","SHEET","SSBOND","LINK","CISPEP"\
@@ -62,15 +63,13 @@ class PDB(CafePyBase,FileIO):
         else:
             raise TypeError("Invalid argument type.")
 
-        
     def __len__(self):
         return len(self.row_data)
 
-        
-    def main(self,inputfile):
-        self.openFile()
-
-
+    def read(self):
+        self.openFile(self.inputfile)
+        return self.readATOM()
+    
 class CGPDB(CafePyBase,FileIO):
     """
     Reading a Coarse-Grained PDB(Protein Data Bank) file which is an output from CafeMol Software.

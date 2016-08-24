@@ -10,16 +10,16 @@ class TestCafePy(unittest.TestCase):
     def setUpClass(cls):
         from cafepy import CafePy
         cls.testclass = CafePy()
-        cls.initArgs = cls.testclass._initArgs()
+        #cls.initArgs = cls.testclass._initArgs()
         
     def setUp(self):
         pass
         
     def test_with_empty_args(self):
         #with self.assertRaises(SystemExit):
-        print(self.initArgs.parse_args([]))
-        print(self.initArgs.parse_args(["com","-i test.dcd"]))
-
+        #print(self.initArgs.parse_args([]))
+        #print(self.initArgs.parse_args(["com","-i test.dcd"]))
+        pass
 
     def tearDown(self):
         pass

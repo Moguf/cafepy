@@ -1,4 +1,4 @@
-2#!/usr/bin/env python3
+#!/usr/bin/env python3
 # coding: utf-8
 """
 * Author: Mogu 
@@ -16,7 +16,7 @@ import argparse
 
 ### My module
 #import calc_distance
-from .dcdfile import ReadDCD
+from .dcdfile import DCD
 from .calc_com import CalcCOM
 from .cafepy_stdout import CafepyStdout
 from .indexfile import Index

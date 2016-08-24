@@ -6,25 +6,35 @@ import unittest
 
 from unittest.mock import patch
 
-from test_data_in_read_pdb import *
+from .test_data_in_read_pdb import *
 
-class TestReadDcd(unittest.TestCase):
+class TestPDB(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        from cafepy import ReadPDB
-        cls.testclass = ReadPDB()
-        test_inpufile = "test.pdb"
-        cls.testclass.openFile(test_inpufile,mode="r")
+        sys.path.append(os.path.abspath("./test"))
+        from cafepy import PDB
+        test_inpufile = "./test/test.pdb"
+        cls.testclass = PDB(test_inpufile)
         
-    def test_readPDB(self):
-        row_data = self.testclass.readPDB()
-        self.assertEqual(row_data,list_pdb_data)
-        self.assertEqual(self.testclass[:],list_pdb_coard)
-        self.assertEqual(self.testclass[0],self.testclass[:][0])
+    def test_readPDB_with_index(self):
+        row_data = self.testclass.read()
+        self.assertEqual(row_data[0],list_pdb_data[0])
+
+
+        #self.assertEqual(self.testclass[0],self.testclass[:][0])
+        
+    def test_readPDB_with_slices(self):
+        row_data = self.testclass.read()
+        self.assertEqual(self.testclass[:2],list_pdb_coard[:2])
+        self.assertEqual(self.testclass[2:5],list_pdb_coard[2:5])
+        self.assertEqual(self.testclass[2],list_pdb_coard[2])
+        
+        
 
     def test_len(self):
-        self.testclass.readPDB()
+        self.testclass.read()
         self.assertEqual(873,len(self.testclass))
+        self.assertEqual(len(self.testclass[2:]),len(list_pdb_coard[2:]))
         
     def tearDown(self):
         pass

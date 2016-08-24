@@ -10,8 +10,8 @@
 
 .. |Python35| image:: https://img.shields.io/badge/python-3.5-blue.svg
 
-cafepy(Python3 scripts)
-=======================
+cafepy(Python3 scripts: Under Development)
+==========================================
 
 These scripts are for analyzing CafeMol_ outputs.
 

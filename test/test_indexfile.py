@@ -23,7 +23,7 @@ class TestReadIndex(unittest.TestCase):
         pass
 
     def test_read_index_file(self):
-        ndxfile = "test_index.ndx"
+        ndxfile = "./test/test_index.ndx"
         data = self.indexclass.read(ndxfile)
         self.assertEqual(data,[0, 1, 2, 3, 4, 5, 6, 7, 8, 99, 10, 9, 1999])
         
