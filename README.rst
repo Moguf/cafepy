@@ -8,7 +8,7 @@
 .. |Coveralls| image:: https://coveralls.io/repos/github/Moguf/cafepy/badge.svg?branch=master
 .. _Coveralls: https://coveralls.io/github/Moguf/cafepy?branch=master
 
-.. |Python35| image:: image:: https://img.shields.io/badge/python-3.5-blue.svg
+.. |Python35| image:: https://img.shields.io/badge/python-3.5-blue.svg
 
 cafepy(Python3 scripts)
 =======================
@@ -32,7 +32,7 @@ Install virtualenv. (RECOMMEND:for protecting your Home environment.) ::
   pip3 install virtualenv
   
 
-* activate virtualenv::
+activate virtualenv::
 
   virtualenv -p python3 venv
   source venv/bin/activate
@@ -43,6 +43,7 @@ Install virtualenv. (RECOMMEND:for protecting your Home environment.) ::
 Set Up
 ------
 ::
+   
    python3 -m pip install -r requirements.txt
    # or
    pip3 install -r requirements.txt
@@ -51,13 +52,16 @@ Set Up
 build & install
 ---------------
 ::
+   
    cd cafepy
    python3 setup.py build
    python3 setup.py install
 
+   
 Example
 -------
 ::
+
    python3 -m cafepy com -f filename.dcd -o output.file
 
 
