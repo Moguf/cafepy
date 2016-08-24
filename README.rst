@@ -1,6 +1,6 @@
 .. -*- mode: rst -*-
    
-|Travis|_ |Coveralls|_ |Python35|
+|Travis|_ |Coveralls|_ |Python35| |Cafemol|
 
 .. |Travis| image:: https://travis-ci.org/Moguf/cafepy.svg?branch=master
 .. _Travis: https://travis-ci.org/Moguf/cafepy
@@ -10,10 +10,12 @@
 
 .. |Python35| image:: https://img.shields.io/badge/python-3.5-blue.svg
 
+.. |Cafemol| image:: http://www.cafemol.org/image/favicon.gif
+
 cafepy(Python3 scripts)
 =======================
 
-These scripts are for analyzing CafeMol outputs.
+These scripts are for analyzing CafeMol_ outputs.
 
 Requirements
 ------------
@@ -65,3 +67,10 @@ Example
    python3 -m cafepy com -f filename.dcd -o output.file
 
 
+References
+----------
+* CafeMol_ Project.
+  
+.. _CafeMol: http://www.cafemol.org
+
+   
