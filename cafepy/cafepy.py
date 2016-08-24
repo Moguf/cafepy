@@ -19,7 +19,7 @@ import argparse
 from .dcdfile import ReadDCD
 from .calc_com import CalcCOM
 from .cafepy_stdout import CafepyStdout
-from .read_index import Index
+from .indexfile import Index
 from .cafepy_error import CmdLineError,FileError
 from .cafepy_memory_manager import CafeMemManager
 

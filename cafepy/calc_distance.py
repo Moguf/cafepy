@@ -14,7 +14,7 @@ example:
 
 from .dcdfile import DCD
 from .pdbfile import PDB
-from .read_index import Index
+from .indexfile import Index
 
 class CalcDistance(object):
     """

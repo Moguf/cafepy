@@ -21,7 +21,7 @@ import scipy as sc
 from .file_io import FileIO
 from .dcdfile import DCD
 from .pdbfile import PDB
-from .read_index import Index
+from .indexfile import Index
 from .write_movie import WriteMovie
 
 class CalcCOM(object):
