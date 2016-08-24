@@ -25,7 +25,8 @@ import struct
 
 #### My Module
 from .file_io import FileIO
-from .cafepy_error import ReadingError,FileError
+from .pdbfile import PDB
+from .cafepy_error import ReadingError, FileError
 from .cafepy_base import CafePyBase
 
 class DcdHeader:
@@ -202,11 +203,15 @@ class DCD(CafePyBase,FileIO):
             self.length = step
             return step
 
-    def write(self, outputfile, wtype):
+    def write(self, outputfile, frame=[], wtype=None):
         ofile = self.openFile(outputfile, mode="w")
+        if isinstance(frame, int):
+            PDB(outputfile)
+            self[frame]
+            
+        ofile.close()
         
-        pass
-        
+            
     def close(self):
         self._file.close()
         

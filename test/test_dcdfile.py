@@ -42,12 +42,12 @@ class TestReadDcd(unittest.TestCase):
         #print(self.testclass[-2:-4])
         
     def test_readDCD(self):
+        self.testclass.write("test_from_dcdfile.pdb", 1, "pdb")
         pass
 
     def test_make_pdb_from_dcd(self):
-        
+
         pass
-    
     
     def tearDown(self):
         pass

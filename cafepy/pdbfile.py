@@ -28,9 +28,9 @@ class PDB(CafePyBase,FileIO):
     """
     Reading a PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
-    def __init__(self,inputfile):
+    def __init__(self, iofile):
         FileIO.__init__(self)
-        self.inputfile = inputfile
+        self.iofile = iofile
         self.coard = []
         self.row_data = []
         
@@ -66,17 +66,19 @@ class PDB(CafePyBase,FileIO):
         return len(self.row_data)
 
     def read(self):
-        self._file = self.openFile(self.inputfile)
+        self._file = self.openFile(self.iofile)
         return self.readATOM()
 
     def close(self):
         self._file.close()
         return True
         
-    def write(self):
+    def write(self, xyz=[], inpsffile=""):
+        
+        
         pass
     
-class CGPDB(CafePyBase,FileIO):
+class CGPDB(CafePyBase, FileIO):
     """
     Reading a Coarse-Grained PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
