@@ -16,25 +16,21 @@ class FileIO(object):
     Don't support command line usages.
     """
     def __init__(self):
-        self.inputfile = ""
-        self._file = ""
+        pass
 
-    def openFile(self,filename,mode='r'):
+    def openFile(self, filename, mode='r'):
         """
 
         """
-        
-        self.inputfile = filename
+        _file = None
         try:
-            self._file = open(filename,mode)
+            _file = open(filename, mode)
         except:
             raise FileExistsError
-        
-        return self._file
-
+        return _file
     
     def closeFile(self):
-        self._file.close()
+        pass
         
     def __str__(self):
         pass

@@ -202,7 +202,9 @@ class DCD(CafePyBase,FileIO):
             self.length = step
             return step
 
-    def write(self,outputfile,wtype):
+    def write(self, outputfile, wtype):
+        ofile = self.openFile(outputfile, mode="w")
+        
         pass
         
     def close(self):
