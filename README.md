@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Moguf/cafepy.svg?branch=master)](https://travis-ci.org/Moguf/cafepy)[![Coverage Status](https://coveralls.io/repos/github/Moguf/cafepy/badge.svg?branch=master)](https://coveralls.io/github/Moguf/cafepy?branch=master)
+[![Build Status](https://travis-ci.org/Moguf/cafepy.svg?branch=master)](https://travis-ci.org/Moguf/cafepy)  [![Coverage Status](https://coveralls.io/repos/github/Moguf/cafepy/badge.svg?branch=master)](https://coveralls.io/github/Moguf/cafepy?branch=master)
 # cafepy(Python3 scripts)
 These scripts are for analyzing CafeMol outputs.
 
