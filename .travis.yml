@@ -5,7 +5,6 @@ install:
     - pip install -r requirements.txt
     - pip install coveralls
 script:
-    python setup.py test
     coverage run --source=cafepy setup.py test
 after_success:
     coveralls
