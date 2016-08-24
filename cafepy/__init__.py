@@ -1,5 +1,5 @@
 from .cafepy import CafePy
-from .read_dcd import DCD
+from .dcdfile import DCD
 from .read_pdb import PDB
 from .read_pdb import CGPDB
 from .read_index import Index

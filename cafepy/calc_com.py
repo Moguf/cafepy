@@ -19,7 +19,7 @@ import scipy as sc
 
 ## My module
 from .file_io import FileIO
-from .read_dcd import DCD
+from .dcdfile import DCD
 from .read_pdb import PDB
 from .read_index import Index
 from .write_movie import WriteMovie
@@ -44,7 +44,7 @@ class CalcCOM(object):
     def readDCD(self,inputfile):
         self.dcdfile = inputfile
         self.data = DCD()
-        self.data.main(inputfile)
+        self.data.read(inputfile)
         
     def readPDB(self):
         #
@@ -59,9 +59,9 @@ class CalcCOM(object):
     def calcCOMfromDCD(self,atom_index=[],traj_index=[]):
         """ 
         ### Calculating the Center of mass from DCD-file.
-        atom_index    :  You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
-        traj_index  :  You can extract trajectories for calculating COM.
-        
+        :atom_index:    You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
+        :traj_index:    You can extract trajectories for calculating COM.
+
         """
         if not atom_index:
             self.com = np.average(self.data[:],axis=0)

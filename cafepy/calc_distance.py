@@ -12,7 +12,7 @@ example:
     cafepy distance -f test.dcd[.pdb]
 """
 
-from .read_dcd import DCD
+from .dcdfile import DCD
 from .read_pdb import PDB
 from .read_index import Index
 

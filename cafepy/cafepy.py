@@ -16,6 +16,7 @@ import argparse
 
 ### My module
 #import calc_distance
+from .dcdfile import ReadDCD
 from .calc_com import CalcCOM
 from .cafepy_stdout import CafepyStdout
 from .read_index import Index
@@ -66,6 +67,17 @@ class CafePy(object):
             com.close()
             self.anim.end()
             return
+
+        if "readframe" == ctype:
+            flags = self._checkFlags(self.args,'f','o','n')
+            self.anim.start()
+            dcd = ReadDCD()
+            dcd.read(self.args.inputfile)
+            dcd.write(self.args.outputfile,wtype)
+            self.anim.end()
+            return
+
+            
         
     def _checkFlags(self,args,*flags):
         out = {}
@@ -103,7 +115,7 @@ class CafePy(object):
     def _initArgs(self):
         message = "Analyzing CafeMol outputs."
         parser = argparse.ArgumentParser(description=message)
-        parser.add_argument('calculation_type',nargs='?',type=str,choices=['distance','cmap','com'],help='choose calculation type.')
+        parser.add_argument('calculation_type',nargs='?',type=str,choices=['distance','cmap','com','readframe'],help='choose calculation type.')
         
         parser.add_argument('-f','--inputfile',nargs='?',help='input file name[.dcd,.pdb,ninfo,psf]')
         parser.add_argument('-o','--outputfile',nargs='?',help='output file name [automaticaly set prefix.] ex) filename(.dat)')

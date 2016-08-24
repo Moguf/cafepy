@@ -201,12 +201,16 @@ class DCD(CafePyBase,FileIO):
             self.length = step
             return step
 
+    def write(self,outputfile,wtype):
+        pass
+        
     def close(self):
         self._file.close()
         
-    def main(self,inputfile):
+    def read(self,inputfile):
         self.openFile(inputfile,mode="rb")
         self.readHeader()
+
         
 if __name__ == "__main__":
     pass
