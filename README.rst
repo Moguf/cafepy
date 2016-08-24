@@ -1,6 +1,6 @@
 .. -*- mode: rst -*-
    
-|Travis|_ |Coveralls|_ |Python35| |Cafemol|
+|Travis|_ |Coveralls|_ |Python35| 
 
 .. |Travis| image:: https://travis-ci.org/Moguf/cafepy.svg?branch=master
 .. _Travis: https://travis-ci.org/Moguf/cafepy
@@ -9,8 +9,6 @@
 .. _Coveralls: https://coveralls.io/github/Moguf/cafepy?branch=master
 
 .. |Python35| image:: https://img.shields.io/badge/python-3.5-blue.svg
-
-.. |Cafemol| image:: http://www.cafemol.org/image/favicon.gif
 
 cafepy(Python3 scripts)
 =======================
@@ -69,8 +67,7 @@ Example
 
 References
 ----------
-* CafeMol_ Project.
+* |CafeMol| CafeMol_ Project.
   
 .. _CafeMol: http://www.cafemol.org
-
-   
+.. |CafeMol| image:: http://www.cafemol.org/image/favicon.gif
