@@ -69,6 +69,9 @@ class PDB(CafePyBase,FileIO):
     def read(self):
         self.openFile(self.inputfile)
         return self.readATOM()
+
+    def write(self):
+        pass
     
 class CGPDB(CafePyBase,FileIO):
     """

@@ -64,8 +64,9 @@ class DCD(CafePyBase,FileIO):
     """
     Reading a DCD file which is an output from CafeMol Software.
     """
-    def __init__(self):
-        self.inputfile = ""
+    def __init__(self,filename):
+        FileIO.__init__(self)
+        self.inputfile = filename
         self._file = ""
         self._header = DcdHeader()
         self.length = None
@@ -207,8 +208,8 @@ class DCD(CafePyBase,FileIO):
     def close(self):
         self._file.close()
         
-    def read(self,inputfile):
-        self.openFile(inputfile,mode="rb")
+    def read(self):
+        self._file = self.openFile(self.inputfile,mode="rb")
         self.readHeader()
 
         

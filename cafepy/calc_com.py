@@ -43,8 +43,8 @@ class CalcCOM(object):
         
     def readDCD(self,inputfile):
         self.dcdfile = inputfile
-        self.data = DCD()
-        self.data.read(inputfile)
+        self.data = DCD(inputfile)
+        self.data.read()
         
     def readPDB(self):
         #
