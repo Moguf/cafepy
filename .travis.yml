@@ -6,4 +6,5 @@ install:
     - pip install coveralls
 script:
     - coverage run --source=cafepy setup.py test
+    - coverage report -m
 after_success: coveralls
