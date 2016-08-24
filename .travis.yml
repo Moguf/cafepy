@@ -1,3 +1,10 @@
 language: python
 python:
-    - "3.5"      
+    - "3.5"
+install:
+    - pip install -r requirements.txt
+    - pip install -r coveralls
+script:
+    coverage run --source=cafepy setup.py test
+after_success:
+    coveralls
