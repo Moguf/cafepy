@@ -13,11 +13,9 @@ Contents:
               
    cafepy
 
-      
+   ../../README.md
+
    
-
-
-              
 Indices and tables
 ==================
 
