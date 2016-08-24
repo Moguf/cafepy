@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Moguf/cafepy.svg?branch=master)](https://travis-ci.org/Moguf/cafepy)
 # cafepy(Python3 scripts)
 These scripts are for analyzing CafeMol outputs.
 
