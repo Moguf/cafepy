@@ -24,16 +24,20 @@ Requirements
 RECOMMEND
 ---------
 
-Install virtualenv. (RECOMMEND:for protecting your Home environment.) ::
+Install virtualenv. (RECOMMEND:for protecting your Home environment.)
 
+.. code-block:: bash
+                
   python3 -m pip install -U pip setuptools
   python3 -m pip install virtualenv
   # or
   pip3 install virtualenv
   
 
-activate virtualenv::
+activate virtualenv
 
+.. code-block:: bash
+                
   virtualenv -p python3 venv
   source venv/bin/activate
   # Removing virtual environment
@@ -42,8 +46,9 @@ activate virtualenv::
 
 Set Up
 ------
-::
-   
+
+.. code-block:: bash
+                
    python3 -m pip install -r requirements.txt
    # or
    pip3 install -r requirements.txt
@@ -51,8 +56,9 @@ Set Up
 
 build & install
 ---------------
-::
-   
+
+.. code-block:: bash
+                
    cd cafepy
    python3 setup.py build
    python3 setup.py install
@@ -60,8 +66,9 @@ build & install
    
 Example
 -------
-::
 
+.. code-block:: bash
+                
    python3 -m cafepy com -f filename.dcd -o output.file
 
 
