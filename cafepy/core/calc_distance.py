@@ -12,9 +12,9 @@ example:
     cafepy distance -f test.dcd[.pdb]
 """
 
-from dcdfile import DCD
-from pdbfile import PDB
-from indexfile import Index
+from ..files.dcdfile import DCD
+from ..files.pdbfile import PDB
+from ..files.indexfile import Index
 
 class CalcDistance(object):
     """

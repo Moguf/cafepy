@@ -1,9 +1,1 @@
-from cafepy import CafePy
-from dcdfile import DCD
-from pdbfile import PDB
-from pdbfile import CGPDB
-from indexfile import Index
-from cafepy_memory_manager import CafeMemManager
-from cafepy_stdout import CafepyStdout
-from calc_distance import CalcDistance
-from calc_com import CalcCOM
+import cafepy.cafepy

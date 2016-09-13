@@ -6,7 +6,7 @@ import unittest
 
 from unittest.mock import patch
 
-from .test_data_in_read_pdb import *
+from test_data_in_read_pdb import *
 
 class TestPDB(unittest.TestCase):
     @classmethod
@@ -19,7 +19,6 @@ class TestPDB(unittest.TestCase):
     def test_readPDB_with_index(self):
         row_data = self.testclass.read()
         self.assertEqual(row_data[0],list_pdb_data[0])
-
 
         #self.assertEqual(self.testclass[0],self.testclass[:][0])
         

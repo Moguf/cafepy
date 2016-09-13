@@ -3,7 +3,7 @@
 import os
 import sys
 
-from file_io import FileIO
+from .file_io import FileIO
 
 class PSF(FileIO):
     def __init__(self, iofile):

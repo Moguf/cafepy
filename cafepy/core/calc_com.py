@@ -18,11 +18,11 @@ import numpy as np
 import scipy as sc
 
 ## My module
-from file_io import FileIO
-from dcdfile import DCD
-from pdbfile import PDB
-from indexfile import Index
-from moviefile import WriteMovie
+from ..files.file_io import FileIO
+from ..files.dcdfile import DCD
+from ..files.pdbfile import PDB
+from ..files.indexfile import Index
+from ..files.moviefile import WriteMovie
 
 class CalcCOM(object):
     """
