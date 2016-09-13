@@ -15,12 +15,12 @@ import argparse
 
 ### My module
 #import calc_distance
-from dcdfile import DCD
-from calc_com import CalcCOM
-from cafepy_stdout import CafepyStdout
-from indexfile import Index
-from cafepy_error import CmdLineError,FileError
-from cafepy_memory_manager import CafeMemManager
+from files.dcdfile import DCD
+from files.indexfile import Index
+from utils.cafepy_stdout import CafepyStdout
+from utils.cafepy_error import CmdLineError,FileError
+from utils.cafepy_memory_manager import CafeMemManager
+from core.calc_com import CalcCOM
 
 
 class CafePy(object):

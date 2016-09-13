@@ -21,8 +21,8 @@ import sys
 
 #### My Module
 from file_io import FileIO
-from cafepy_error import ReadingError,FileError
-from cafepy_base import CafePyBase
+from utils.cafepy_error import CafePyError
+from utils.cafepy_base import CafePyBase
         
 class PDB(CafePyBase,FileIO):
     """
