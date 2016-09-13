@@ -6,14 +6,25 @@
 Welcome to CafePy's documentation!
 ==================================
 
-Contents:
+This CafePy is a tool for analyzing `CafeMol`_ outputs. `CafeMol`_ is one of the greatest Molecluar Dynamics simulation Software. The software provides a large time scale and a big structure scale simulation by using Coarse-Grained methods.
+
+CafePy
+------
+
+CafePy provides ..
+
+* Reading some files [PDB, DCD, NINFO]
+* calcurating Center of Mass from [PDB, DCD]
+* .. Now under development.
+
+Souces:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
               
    cafepy
 
-   ../../README.md
+
 
    
 Indices and tables
@@ -23,3 +34,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+.. _CafeMol : http://www.cafemol.org/

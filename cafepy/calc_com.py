@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # coding:utf-8
 """
-###  Editer:Mogu  ###
 This class caluclates the center of mass of proteins from [dcd,pdb]-files.
 
-environment:
-    Pyton >= 3.5.1
-requirement:
-    Numpy >= 1.11
-    Scipy >= 
-example:
+:Editer:   Mogu
+:environment:   Pyton >= 3.5.1
+:requirement:   Numpy >= 1.11
+
+* example
+.. code-block: bash
+
     cafepy com -i test.pdb[.dcd]
 """
 
@@ -27,14 +27,21 @@ from .moviefile import WriteMovie
 class CalcCOM(object):
     """
     Calculating the center of mass from [dcd,pdb]-files
-    Examples:
-    # In Python scripts.
+
+    * Examples:
+    
+    .. code-block:: python
+
         tmp = CalcCom()
         tmp.readDCD("dcdfile")   or  tmp.readPDB("pdbfile")
         tmp.calcCOMfromDCD()     or  tmp.calcCOMfromPDB()
         tmp.writeFile("outfile") or  tmp.writeShow()
-    # In Terminal.
-        # pycafe.py com -f [dcd,pdb]-infile [optional: -o outfile, -nf index.file or -n int-value] 
+
+    *In Terminal.*
+
+    .. code-block:: bash
+
+         pycafe.py com -f [dcd,pdb]-infile [optional: -o outfile, -nf index.file or -n int-value] 
     """
     def __init__(self):
         self.dcdfile = ""
@@ -56,7 +63,7 @@ class CalcCOM(object):
     def calcCOMfromPDB(self):
         pass
 
-    def calcCOMfromDCD(self,atom_index=[],traj_index=[]):
+    def calcCOMfromDCD(self,atom_index=[], traj_index=[]):
         """ 
         ### Calculating the Center of mass from DCD-file.
         :atom_index:    You can select Atom for calculating COM with index[.ndx,.ninfo]-file 

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # coding: utf-8
 """
-* Author: Mogu 
+:Author:      *Mogu*
+:Version:    0.0.1dev
+:environment:     Python3.5.1
+
+
 This code is for analyizing CafeMol Outputs.
 CafeMol which is one of the Molecular Dynamics simulation software 
 is developed by Takada-Lab in Kyoto Univ. .
-
-: environment:
-    Python3.5.1
-: requirements:
 
 """
 import time
@@ -26,7 +26,29 @@ from .cafepy_memory_manager import CafeMemManager
 
 
 class CafePy(object):
-    """ This class is main class of cafepy and analyizes command-line argments. """
+    """ 
+    This class is main class of cafepy and analyizes command-line argments. 
+
+    
+    ex) command line usage.
+
+    .. code-block:: bash
+
+        cafepy com -dcd dcdfile -psf psffile 
+
+    ex) script usage.
+
+    .. code-block:: python
+
+        from cafepy import Cafepy
+
+
+    :self.anim:      support command line Animation.
+
+    #:   support command line Animation.
+
+    
+    """
     #: Author Mogu
     def __init__(self):
         CMM = CafeMemManager()
@@ -39,6 +61,9 @@ class CafePy(object):
         self._initSet()
         
     def main(self):
+        """
+        this is main function of CafePy.
+        """
         self._initArgs()
         self.handleArgs()
 
@@ -46,6 +71,13 @@ class CafePy(object):
         self.calc_msg["com"] = "Center of Mass."
         
     def handleArgs(self):
+        """
+        :ctype:    calculation type.
+        :header:   for command-line message.
+
+        
+        """
+        
         ctype = self.args.calculation_type
         header = "CALCULATION\t\t:\t{};".format(self.calc_msg[ctype])
         self.header += header

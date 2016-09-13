@@ -1,8 +1,15 @@
-CafePy project
-==============
+CafePy Souce Code Ducumentation.
+================================
 
-submodule
-=========
+Souce Code Ducumentation.
 
-.. autoclass:: cafepy.CafePy
-   :members:
+Modules
+
+.. toctree::
+   :maxdepth: 1
+   
+   codes/cafepy
+
+
+To Do
+=====
