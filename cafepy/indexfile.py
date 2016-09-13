@@ -11,7 +11,7 @@ requirement:
 """
 import csv
 
-from .file_io import FileIO
+from file_io import FileIO
 
 class Index(FileIO):
     """

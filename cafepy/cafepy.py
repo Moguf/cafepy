@@ -2,9 +2,8 @@
 # coding: utf-8
 """
 :Author:      *Mogu*
-:Version:    0.0.1dev
-:environment:     Python3.5.1
-
+:Version:    *0.0.1dev*
+:environment:     *Python3.5.1*
 
 This code is for analyizing CafeMol Outputs.
 CafeMol which is one of the Molecular Dynamics simulation software 
@@ -16,13 +15,12 @@ import argparse
 
 ### My module
 #import calc_distance
-from .dcdfile import DCD
-from .calc_com import CalcCOM
-from .cafepy_stdout import CafepyStdout
-from .indexfile import Index
-from .cafepy_error import CmdLineError,FileError
-from .cafepy_memory_manager import CafeMemManager
-
+from dcdfile import DCD
+from calc_com import CalcCOM
+from cafepy_stdout import CafepyStdout
+from indexfile import Index
+from cafepy_error import CmdLineError,FileError
+from cafepy_memory_manager import CafeMemManager
 
 
 class CafePy(object):

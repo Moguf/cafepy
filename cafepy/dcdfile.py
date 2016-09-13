@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # coding:utf-8
 """
-###  Editer:Mogu  ###
+:Editer:    Mogu
+
 class:
     DcdHeadr: defines dcd-headers structure.
     ReadDcd: reads dcd-files.
@@ -24,10 +25,10 @@ import struct
 #import numpy as np
 
 #### My Module
-from .file_io import FileIO
-from .pdbfile import PDB
-from .cafepy_error import ReadingError, FileError
-from .cafepy_base import CafePyBase
+from file_io import FileIO
+from pdbfile import PDB
+from cafepy_error import ReadingError, FileError
+from cafepy_base import CafePyBase
 
 class DcdHeader:
     """
