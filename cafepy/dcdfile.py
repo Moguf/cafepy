@@ -202,14 +202,23 @@ class DCD(CafePyBase,FileIO):
             self.length = step
             return step
 
-    def write(self,outputfile,wtype):
+    def write(self,outputfile, wtype):
+        if write == "pdb":
+            pass
+        elif write == "dcd":
+            pass
+        else:
+            raise Exception("TYPE Error: pdb or dcd are available.")
         pass
-        
+    
     def close(self):
         self._file.close()
+
+    def extract(self):
+        pass
         
     def read(self):
-        self._file = self.openFile(self.inputfile,mode="rb")
+        self._file = self.openFile(self.inputfile, mode="rb")
         self.readHeader()
 
         
