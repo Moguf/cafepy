@@ -2,7 +2,6 @@ alabaster==0.7.9
 autodoc==0.3
 Babel==2.3.4
 beautifulsoup4==4.5.1
-CafePy==0.0.1
 coverage==4.0.3
 coveralls==1.1
 cycler==0.10.0
