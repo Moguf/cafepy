@@ -14,13 +14,15 @@ import time
 import argparse
 
 ### My module
-#import calc_distance
-from .files.dcdfile import DCD
-from .files.indexfile import Index
-from .utils.cafepy_stdout import CafepyStdout
-from .utils.cafepy_error import CmdLineError,FileError
-from .utils.cafepy_memory_manager import CafeMemManager
-from .core.calc_com import CalcCOM
+print("hello")
+import cafepy
+
+from cafepy.files.dcdfile import DCD
+from cafepy.files.indexfile import Index
+from cafepy.utils.cafepy_stdout import CafepyStdout
+from cafepy.utils.cafepy_error import CmdLineError,FileError
+from cafepy.utils.cafepy_memory_manager import CafeMemManager
+from cafepy.core.calc_com import CalcCOM
 
 
 class CafePy(object):
@@ -156,8 +158,9 @@ class CafePy(object):
 
         return self.args
 
-
-if __name__ == "__main__":
+def main():
     tmp = CafePy()
     tmp.main()
-
+    
+if __name__ == "__main__":
+    main()

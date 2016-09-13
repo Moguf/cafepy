@@ -20,11 +20,14 @@ setup(
     author='Mogu',
     author_email='kbu94984@gmail.com',
     long_description=read('README.rst'),
-    url='',
-    license='MIT',
+    url='https://github.com/Moguf/cafepy',
+    license='GPL3.0',
     packages=find_packages(),
     #install_requires=['numpy','scipy','matplotlib'],
+    scripts=['cafepy/cmdline.py'],
     entry_points = {
-        'console_scirpts' : ['cafepy=cafepy.cafepy:main'],
+        'console_scripts' : ['cafepy = cafepy.cmdline:main'],
     },
 )
+
+
