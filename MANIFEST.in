@@ -1,7 +1,7 @@
 include MANIFEST.in
 include *.txt
 # Top-level
-include setup.py README.md
+include setup.py README.md scripts
 # All-source file
 recursive-include cafepy *
 # All documentation

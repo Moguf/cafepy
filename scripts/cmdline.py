@@ -14,8 +14,6 @@ import time
 import argparse
 
 ### My module
-print("hello")
-import cafepy
 
 from cafepy.files.dcdfile import DCD
 from cafepy.files.indexfile import Index
@@ -29,6 +27,8 @@ class CafePy(object):
     """ 
     This class is main class of cafepy and analyizes command-line argments. 
 
+    .. note:: Only supports for command line. Don't use this from scripts.
+
     
     ex) command line usage.
 
@@ -36,18 +36,18 @@ class CafePy(object):
 
         cafepy com -dcd dcdfile -psf psffile 
 
-    ex) script usage.
+    
+    **Members**
 
-    .. code-block:: python
-
-        from cafepy import Cafepy
-
-
-    :self.anim:      support command line Animation.
-
-    #:   support command line Animation.
+    :anim:     support command line Animation.
+    :args:     command line arguments
+    :ctype:    calculation type from command line.
+    :header:   for command-line message.
 
     
+    **Methods**
+
+
     """
     #: Author Mogu
     def __init__(self):
@@ -72,10 +72,7 @@ class CafePy(object):
         
     def handleArgs(self):
         """
-        :ctype:    calculation type.
-        :header:   for command-line message.
-
-        
+        This method 
         """
         
         ctype = self.args.calculation_type
@@ -111,7 +108,10 @@ class CafePy(object):
 
             
         
-    def _checkFlags(self,args,*flags):
+    def _checkFlags(self, args, *flags):
+        """
+        test
+        """
         out = {}
         if 'f' in flags:
             msg = "\nCOUTION: No ouput_file !! ex) cafepy [...] -f input-file"
@@ -140,11 +140,19 @@ class CafePy(object):
         return out
 
     def _checkArg(self,arg,msg):
+        """
+        test
+        """
+
         if not arg:
             msg = msg
             raise FileError(msg)
         
     def _initArgs(self):
+        """
+        test
+        """
+
         message = "Analyzing CafeMol outputs."
         parser = argparse.ArgumentParser(description=message)
         parser.add_argument('calculation_type',nargs='?',type=str,choices=['distance','cmap','com','readframe'],help='choose calculation type.')

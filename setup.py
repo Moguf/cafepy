@@ -24,9 +24,9 @@ setup(
     license='GPL3.0',
     packages=find_packages(),
     #install_requires=['numpy','scipy','matplotlib'],
-    scripts=['cafepy/cmdline.py'],
+    scripts=['scripts/cmdline.py'],
     entry_points = {
-        'console_scripts' : ['cafepy = cafepy.cmdline:main'],
+        'console_scripts' : ['cafepy = scripts.cmdline:main'],
     },
 )
 

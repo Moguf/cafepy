@@ -3,13 +3,20 @@ CafePy Souce Code Ducumentation.
 
 Souce Code Ducumentation.
 
-Modules
+Scripts
+-------
 
 .. toctree::
    :maxdepth: 1
    
    codes/cafepy
 
+Modules
+-------
 
-To Do
-=====
+.. toctree::
+   :maxdepth: 1
+   
+   codes/cafepy
+   
+

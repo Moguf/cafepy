@@ -1,11 +1,11 @@
 cafepy
 ==============
 
-.. automodule:: cafepy.cafepy
+.. automodule:: scripts.cmdline
 
-.. py:module:: cafepy
-                
+.. py:module:: cmdline
+               
 .. autoclass:: CafePy
-   :members: main, handleArgs
+   :members: _initArgs, _checkFlags, _checkArg, handleArgs, main
 
 
