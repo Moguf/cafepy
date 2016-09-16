@@ -81,7 +81,7 @@ class CafePyDocs():
         classes = []
         with open(filename, 'r') as f:
             for iline in f.readlines():
-                m = re.match('^class (\w+)\(.*\)', iline)
+                m = re.match('^class (\w+)(\:|\()', iline)
                 if m:
                     classes.append(m.group(1))
         return classes

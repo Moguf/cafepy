@@ -3,20 +3,23 @@
 """
 :Editer:    Mogu
 :Version: 0.0.1dev
+:environment:  Pyton3.5.1
 
-class:
-    DcdHeadr: defines dcd-headers structure.
-    Dcd: reads dcd-files.
-environment:
-    Pyton3.5.1
-requirement:
-    ?Numpy1.10.1
-referance:
-    Author:Naoto Hori,  https://github.com/naotohori/
-    Author:mash-ito,    https://github.com/mash-it/
-caution:
+*contains*
+
+* DcdHeadr: defines dcd-headers structure.
+* Dcd: reads dcd-files.
+
+*referance*
+
+* Author:Naoto Hori,  https://github.com/naotohori/
+* Author:mash-ito,    https://github.com/mash-it/
+
+.. note::
+
     python3: supporting that str is utf-8 type.
     We need to write [b"sgring"].
+
 """
 import os
 import sys
@@ -33,6 +36,22 @@ from ..utils.cafepy_base import CafePyBase
 
 class DcdHeader:
     """
+    contans the structure of dcd-file header information. This class only is used by DCD class. Don't directly use this class in your script.
+    
+    
+    :self.nset:    
+    :self.istart:
+    :self.nstep_save:
+    :self.nstep:
+    :self.nunit_real:
+    :self.delta:
+    :self.title:
+    :self.tempk:
+    :self.lunit2mp:
+    :self.nmp_real:
+    :self.bsize:
+    :self.tstep:
+    
     """
     def __init__(self):
         self.nset = None
@@ -65,14 +84,24 @@ class DcdHeader:
         
 class DCD(CafePyBase,FileIO):
     """
-    Reading a DCD file which is an output from CafeMol Software.
+    reads a DCD(binary) file which is an output from CafeMol Software. DCD-files contans coordinates of atoms with binary formart.
+    
+    .. code-block:: python
+
+        import cafepy.files.DCD
+    
+        dcd = DCD('test.dcd')
+        # you can get a coordinate with list format.
+        print(dcd[0])
+    
     """
-    def __init__(self,filename):
+    def __init__(self, filename):
         FileIO.__init__(self)
         self.inputfile = filename
         self._file = ""
         self._header = DcdHeader()
         self.length = None
+        self._read(filename)
         
     def readHeaderSize(self):
         self._file.seek(0)
@@ -139,7 +168,7 @@ class DCD(CafePyBase,FileIO):
         return coord_matrix
 
     
-    def __getitem__(self,key):
+    def __getitem__(self, key):
         """
         Supporting to get item with an index and slice. ex. self[1],self[2:4]
         @Referance:
@@ -219,7 +248,7 @@ class DCD(CafePyBase,FileIO):
     def extract(self):
         pass
         
-    def read(self):
+    def _read(self):
         self._file = self.openFile(self.inputfile, mode="rb")
         self.readHeader()
 

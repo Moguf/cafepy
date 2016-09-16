@@ -95,11 +95,10 @@ Documentation
    make html
 
    
-Example
+Usage
 ^^^^^^^
 
 *Command Line Usage*
-
 
 .. code-block:: bash
                 
@@ -108,11 +107,33 @@ Example
 
 *Script Usage Samples*
 
+* Read dcd file.
 
 .. code-block:: python
 
-   import cafepy
+   from cafepy.files import DCD
+   dcd = DCD('test.dcd')
+   # you can get a coordinate with list format.
+   print(dcd[0])
+   
+
+* Read Ninfo file.
+
+.. code-block:: python
+
+   from cafepy.files import Ninfo
+   
+   ntmp = Ninfo('test.ninfo')
+   print(ntmp)
+   # return data from interaction type.
+   bond_data = ntmp['bond']
+   # return list format.
+   angle_data = ntmp['angle']
+   del ntmp['bond'][0]
                 
+   ntmp.write('out.file')
+   # don't support write() yet.
+   
    
 
 
