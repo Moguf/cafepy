@@ -7,6 +7,6 @@ dcdfile
 
 
 .. autoclass:: DCD
-    :members: close, closeFile, extract, openFile, read, readHeader, readHeaderSize, write
+    :members: _pick_data, _readOneFrame, close, closeFile, extract, openFile, read, readHeader, readHeaderSize, write
 
 

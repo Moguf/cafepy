@@ -56,7 +56,7 @@ class CafePyDocs():
     def getMethods(self, dirs):
         out = []
         for idir in dirs:
-            if idir[0] != '_':
+            if idir[0:2] != '__':
                 out.append(idir)
         return out
             

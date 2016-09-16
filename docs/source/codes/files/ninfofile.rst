@@ -7,6 +7,6 @@ ninfofile
 
 
 .. autoclass:: Ninfo
-    :members: 
+    :members: _read, close, write
 
 

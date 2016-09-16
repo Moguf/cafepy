@@ -7,6 +7,6 @@ psffile
 
 
 .. autoclass:: PSF
-    :members: close, closeFile, openFile, read, write
+    :members: _read, close, closeFile, openFile, read, write
 
 
