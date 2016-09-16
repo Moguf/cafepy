@@ -4,6 +4,9 @@ python:
 install:
     - pip install -r requirements.txt
     - pip install coveralls
+    - pip install pytest pytest-cov codecov
 script:
-    - coverage run --source=cafepy setup.py test
-after_success: coverage report -m
+    py.test --cov cafepy
+after_success:
+    - coveralls
+    - codecov         
