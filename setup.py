@@ -15,19 +15,28 @@ def read(*parts):
 
 setup(
     name='CafePy',
-    version='0.0.1',
-    description='Python Scripts For Analizing CafeMol Data.',
+    version='0.0.1.dev1',
+    description='Python Scripts For Analizing CafeMol Outputs.',
     author='Mogu',
     author_email='kbu94984@gmail.com',
     long_description=read('README.rst'),
     url='https://github.com/Moguf/cafepy',
     license='GPL3.0',
     packages=find_packages(),
-    #install_requires=['numpy','scipy','matplotlib'],
+    install_requires=['numpy','scipy','matplotlib'],
     scripts=['scripts/cmdline.py'],
     entry_points = {
         'console_scripts' : ['cafepy = scripts.cmdline:main'],
     },
+    classifiers=[
+        'Development Status :: 1 - Planning',
+        'Environment :: Console',
+        'Intended Audience :: Science/Research',
+        'Operating System :: OS Independent',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+        'Programming Language :: Python',
+        'Topic :: Scientific/Engineering :: Physics',
+    ]
 )
 
 

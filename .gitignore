@@ -103,3 +103,5 @@ dump/*
 venv/*
 doc/*
 !.gitkeep
+
+.pypirc
