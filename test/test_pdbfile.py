@@ -6,24 +6,20 @@ import unittest
 
 from unittest.mock import patch
 
-from test_data_in_read_pdb import *
+cafepypath = os.path.join(os.path.dirname(__file__), '..')
+sys.path.append(cafepypath)
+from cafepy.files import PDB
 
 class TestPDB(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        sys.path.append(os.path.abspath("./test"))
-        from cafepy import PDB
-        test_inpufile = "./test/test.pdb"
-        cls.testclass = PDB(test_inpufile)
+        cls.testdata = os.path.join(os.path.dirname(__file__), 'data/test.pdb')
+        cls.pdb = PDB(cls.testdata)
         
     def test_readPDB_with_index(self):
-        row_data = self.testclass.read()
-        self.assertEqual(row_data[0],list_pdb_data[0])
-
-        #self.assertEqual(self.testclass[0],self.testclass[:][0])
+        self.assertEqual([15.939, 14.6, -4.238], self.pdb[0])
         
     def test_readPDB_with_slices(self):
-        row_data = self.testclass.read()
         self.assertEqual(self.testclass[:2],list_pdb_coard[:2])
         self.assertEqual(self.testclass[2:5],list_pdb_coard[2:5])
         self.assertEqual(self.testclass[2],list_pdb_coard[2])
@@ -42,5 +38,8 @@ class TestPDB(unittest.TestCase):
     def tearDownClass(cls):
         pass
 
+class TestCGPDB(unittest.TestCase):
+    pass
+    
 if __name__ == "__main__":
     unittest.main()

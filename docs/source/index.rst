@@ -37,7 +37,19 @@ Requirements
 ^^^^^^^^^^^^
 
 - python3 >= 3.5.1
+- Numpy
+- Scipy
+- Matplotlib
 
+How to get
+^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   git clone https://github.com/Moguf/cafepy.git
+   # or
+   pip install -U CafePy
+   
 
 RECOMMEND
 ^^^^^^^^^^^^
@@ -60,12 +72,12 @@ activate virtualenv
   # Removing virtual environment
   # (venv) deactivate 
 
-
+  
 Set Up
 ^^^^^^^^^^^^
 
 .. code-block:: bash
-                
+
    python3 -m pip install -r requirements.txt
    # or
    pip3 install -r requirements.txt
@@ -84,6 +96,7 @@ Set Up
 
    cd cafepy
    pip3 install -e .
+
 
 
 Documentation
@@ -113,8 +126,10 @@ Usage
 
    from cafepy.files import DCD
    dcd = DCD('test.dcd')
-   # you can get a coordinate with list format.
+   # you can get a coordinate of protein with list format.
    print(dcd[0])
+   # you can get a coordinate of 1th atom with list format.
+   print(dcd[0][0])
    
 
 * Read Ninfo file.

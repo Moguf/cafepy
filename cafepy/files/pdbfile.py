@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 # coding:utf-8
 """
-###  Editer:Mogu  ###
-class:
-    PDB: reading PDB(Protein data Bank)-files.
-environment:
-    Pyton3.5.1
-requirement:
-    ?Numpy1.10.1
-caution:
-    python3: supporting that str is utf-8 type.
-    We need to write [b"sgring"].
+:Editer:   Mogu
+:Version:   0.0.1dev
+:environment:       Pyton3.5.1
+
+PDB: reading PDB(Protein data Bank)-files.
+
+
 """
+
 import os
 import re
 import sys
@@ -27,14 +25,44 @@ from ..utils.cafepy_base import CafePyBase
 class PDB(CafePyBase,FileIO):
     """
     Reading a PDB(Protein Data Bank) file which is an output from CafeMol Software.
+    This class returns coordinates as list format. Please check examples below.
+    
+    .. note:: This class only read ATOM line.
+    
+    .. code-block:: python
+
+        from cafepy.files import PDB
+    
+        pdb = PDB('test.pdb')
+        print(pdb[0])
+        # you can get the 1th atom xyz coordinate.
+
+        pdb.close()
+    
     """
-    def __init__(self, iofile):
+    def __init__(self, filename):
         FileIO.__init__(self)
-        self.iofile = iofile
+        self.filename = filename
         self.coard = []
         self.row_data = []
+        self._read()
+
+    def get(self):
+        """
+        :input:   None
+        :return:  pdb data as list format
+        """
+        return self.row_data()
         
     def readATOM(self):
+        """
+        read ATOM line.
+        In future, I will support all record.
+        
+        :pdb_record:   contains pdb records as list structure.
+        :_format:    provides atom line format.
+        """
+        
         pdb_record = ["HEADER","OBSLTE","TITLE","SPLIT","CAVEAT","COMPND","SOURCE","KEYWDS"\
                     ,"REVDAT","SPRSDE","JRNL","REMARK","DBREF","SEQADV","SEQRES","MODRES"\
                     ,"HET","HETNAM","HETSYM","FORMUL","HELIX","SHEET","SSBOND","LINK","CISPEP"\
@@ -51,9 +79,9 @@ class PDB(CafePyBase,FileIO):
         return self.row_data
 
     def __getitem__(self,key):
-        if isinstance(key,slice):
+        if isinstance(key, slice):
             return [self[i] for i in range(*key.indices(len(self)))]
-        elif isinstance(key,int):
+        elif isinstance(key, int):
             if key < 0:
                 key += len(self)
             if key < 0 or key >= len(self):
@@ -65,18 +93,17 @@ class PDB(CafePyBase,FileIO):
     def __len__(self):
         return len(self.row_data)
 
-    def read(self):
-        self._file = self.openFile(self.iofile)
-        return self.readATOM()
+    def _read(self):
+        self._file = self.openFile(self.filename)
+        self.readATOM()
 
     def close(self):
         self._file.close()
         return True
         
     def write(self, xyz=[], inpsffile=""):
-        
-        
         pass
+
     
 class CGPDB(CafePyBase, FileIO):
     """
