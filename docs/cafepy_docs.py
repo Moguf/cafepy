@@ -5,11 +5,10 @@ Usage:
 
 """
 
-
 import re, os, sys, glob
 from importlib import import_module
 
-sys.path.append('../cafepy/')
+sys.path.append('../../cafepy/')
 
 header_template = """
 {}

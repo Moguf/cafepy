@@ -2,10 +2,11 @@
 # coding:utf-8
 """
 :Editer:    Mogu
+:Version: 0.0.1dev
 
 class:
     DcdHeadr: defines dcd-headers structure.
-    ReadDcd: reads dcd-files.
+    Dcd: reads dcd-files.
 environment:
     Pyton3.5.1
 requirement:
