@@ -157,12 +157,16 @@ Other softwares for Analyzing CafeMol .
 
 You can get a lot of information from below.
 
-* https://github.com/ToruNiina/Coffee-mill
-* https://github.com/mash-it/CafeMolAnalysis
-* https://github.com/noinil/pinang  
-* https://github.com/naotohori/cafysis
+* Python codes
   
+  * https://github.com/mash-it/CafeMolAnalysis
+  * https://github.com/naotohori/cafysis
 
+* C++ codes ( faster than python codes )
+  
+  * https://github.com/noinil/pinang    
+  * https://github.com/ToruNiina/Coffee-mill
+  
 Code Documentation.
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
