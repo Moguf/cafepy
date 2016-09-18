@@ -45,7 +45,7 @@ class TestReadDcd(unittest.TestCase):
     def test_get_trajectory_with_slieces(self):
         self.assertEqual(self.fourcoords[1:3], self.dcd[1:3])
         
-    def test_readDCD(self):
+    def test_write_pdb_format(self):
         #self.dcd.write("test_from_dcdfile.pdb", 1, "pdb")
         pass
 

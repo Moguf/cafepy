@@ -34,7 +34,7 @@ class CalcCOM(object):
 
         tmp = CalcCom()
         tmp.readDCD("dcdfile")   or  tmp.readPDB("pdbfile")
-        tmp.calcCOMfromDCD()     or  tmp.calcCOMfromPDB()
+        tmp.calcCOM()
         tmp.writeFile("outfile") or  tmp.writeShow()
 
     *In Terminal.*
@@ -47,11 +47,11 @@ class CalcCOM(object):
         self.dcdfile = ""
         self.pdbfile = ""
         self.data = []
+        self.com = []
         
-    def readDCD(self,inputfile):
+    def readDCD(self, inputfile):
         self.dcdfile = inputfile
         self.data = DCD(inputfile)
-        self.data.read()
         
     def readPDB(self):
         #
@@ -60,28 +60,24 @@ class CalcCOM(object):
     def readIndex(self):
         pass
 
-    def calcCOMfromPDB(self):
-        pass
 
-    def calcCOMfromDCD(self,atom_index=[], traj_index=[]):
+    def calcCOM(self, atom_index=[], traj_index=[]):
         """ 
-        ### Calculating the Center of mass from DCD-file.
+        Calculates the Center of mass from DCD-file or PDB-file.
+
         :atom_index:    You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
         :traj_index:    You can extract trajectories for calculating COM.
 
         """
         if not atom_index:
-            self.com = np.average(self.data[:],axis=0)
+            self.com = np.average(self.data[:], axis=1)
         else:
             ndata = np.array(self.data)
-            self.com = np.average(ndata[:,atom_index],axis=0)
-            del ndata
+            self.com = np.average(ndata[:, atom_index], axis=1)
 
+    def writeFile(self, outputfile, header= ""):
+        np.savetxt(outputfile, self.com, header=header, fmt="%.8e")
 
-    def writeFile(self,outputfile,header= ""):
-        np.savetxt(outputfile,self.com,header=header,fmt="%.8e")
-
-        
     def writeShow(self):
         pass
 
