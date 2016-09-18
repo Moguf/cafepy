@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # coding:utf-8
 """
-###  Editer:Mogu  ###
-This class caluclates the distance between atoms from [dcd,pdb]-files.
+:Editer:    Mogu
+:Version: 0.0.1dev
+:environment:  Pyton3.5.1
 
-environment:
-    Pyton3.5.1
-requirement:
+*contants*
+
+* CalcDistance: provide calculating the distance.
+
+This class caluclates the distance between atoms from [dcd, pdb]-files.
 
 example:
     cafepy distance -f test.dcd[.pdb]
@@ -21,33 +24,39 @@ class CalcDistance(object):
     Calculating the distance between atoms
     Examples:
     # In Python scripts.
-        tmp = CalcCom()
-        tmp.readDCD("dcdfile")   or  tmp.readPDB("pdbfile")
-        tmp.calcCOMfromDCD()     or  tmp.calcCOMfromPDB()
+        # filename = [pdb, dcd]-file
+        tmp = CalcDist(filename)
+        tmp.calcDist():
         tmp.writeFile("outfile") or  tmp.writeShow()
     # In Terminal.
         # pycafe.py com -i [dcd,pdb]-infile [optional: -o outfile, -n index.file or int-value] 
     """
-    def __init__(self):
-        pass
+    def __init__(self, filename):
+        self.dcd = None
+        self.pdb = None
+        self.index = None
+        self.filename = filename
+        self._read(filename)
 
+    def _read(self, filename=""):
+        suffix = filename.split('.')[-1]
+        
+        
+        
+        
     def readDCD(self):
-        #
-        pass
+        self.dcd = DCD(filename)
 
     def readPDB(self):
-        #
-        pass
+        self.pdb = PDB(filename)
 
     def readIndex(self):
-        pass
+        self.index = Index(filename)
+        
 
-    def calcCOMfromPDB(self):
+    def calcDist(self):
         pass
-
-    def calcCOMfromDCD(self):
-        pass
-
+    
 
     def writeFile(self):
         pass

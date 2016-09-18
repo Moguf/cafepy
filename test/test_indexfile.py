@@ -16,7 +16,6 @@ import unittest
 cafepypath = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(cafepypath)
 
-
 class TestReadIndex(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

@@ -16,7 +16,7 @@ class FileIO(object):
     Don't support command line usages.
     """
     def __init__(self):
-        pass
+        self.filename = ''
 
     def openFile(self, filename, mode='r'):
         """

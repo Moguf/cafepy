@@ -5,7 +5,7 @@
 :Version: 0.0.1dev
 :environment:  Pyton3.5.1
 
-*contains*
+*contants*
 
 * DcdHeadr: defines dcd-headers structure.
 * Dcd: reads dcd-files.

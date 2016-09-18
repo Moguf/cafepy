@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# coding:utf-8
-
 import os
 import sys
 import unittest
@@ -13,12 +10,12 @@ sys.path.append(cafepypath)
 from cafepy.files import DCD
 
 
-class TestReadDcd(unittest.TestCase):
+class TestDcd(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        testdata = os.path.join(os.path.dirname(__file__), 'data/test.dcd')
+        testpath = os.path.join(os.path.dirname(__file__), 'data/test.dcd')
         cls.listdata = os.path.join(os.path.dirname(__file__), 'data/')
-        cls.dcd = DCD(testdata)
+        cls.dcd = DCD(testpath)
         sys.path.append(cls.listdata)
         
         from test_data_in_dcdfile import initial_cordinates_of_test_data, final_cordinates_of_test_data, four_trajectories
