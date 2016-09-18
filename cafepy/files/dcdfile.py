@@ -101,7 +101,7 @@ class DCD(CafePyBase,FileIO):
         self._file = ""
         self._header = DcdHeader()
         self.length = None
-        self._read(filename)
+        self._read()
         
     def readHeaderSize(self):
         self._file.seek(0)
@@ -239,7 +239,6 @@ class DCD(CafePyBase,FileIO):
         if isinstance(frame, int):
             PDB(outputfile)
             self[frame]
-            
         ofile.close()
         
     def close(self):
