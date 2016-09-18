@@ -4,11 +4,13 @@ import os
 import sys
 import unittest
 
+cafepypath = os.path.join(os.path.dirname(__file__), '../scripts')
+sys.path.append(cafepypath)
+
 class TestCafePy(unittest.TestCase):
-    
     @classmethod
     def setUpClass(cls):
-        from cafepy import CafePy
+        from cmdline import CafePy
         cls.testclass = CafePy()
         #cls.initArgs = cls.testclass._initArgs()
         

@@ -13,18 +13,22 @@ import os
 import sys
 import unittest
 
+cafepypath = os.path.join(os.path.dirname(__file__), '..')
+sys.path.append(cafepypath)
+
+
 class TestReadIndex(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        from cafepy import Index
+        from cafepy.files import Index
         cls.indexclass = Index()
+        cls.testpath = os.path.join(os.path.dirname(__file__), 'data/test_index.ndx')
         
     def setUp(self):
         pass
 
     def test_read_index_file(self):
-        ndxfile = "./test/test_index.ndx"
-        data = self.indexclass.read(ndxfile)
+        data = self.indexclass.read(self.testpath)
         self.assertEqual(data,[0, 1, 2, 3, 4, 5, 6, 7, 8, 99, 10, 9, 1999])
         
     def tearDown(self):
