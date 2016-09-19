@@ -20,6 +20,7 @@ class TestReadIndex(CafePyTestBase):
     @classmethod
     def setUpClass(cls):
         from cafepy.files import Index
+        cls._set_data_path(cls)
         cls.icls = Index(cls.data_path + 'test_index.ndx')
         
     def setUp(self):

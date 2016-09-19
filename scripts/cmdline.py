@@ -18,7 +18,7 @@ import argparse
 from cafepy.files.dcdfile import DCD
 from cafepy.files.indexfile import Index
 from cafepy.utils.cafepy_stdout import CafepyStdout
-from cafepy.utils.cafepy_error import CmdLineError,FileError
+from cafepy.utils.cafepy_error import CmdLineError, FileTypeError
 from cafepy.utils.cafepy_memory_manager import CafeMemManager
 from cafepy.core.calc_com import CalcCOM
 
@@ -146,7 +146,7 @@ class CafePy(object):
 
         if not arg:
             msg = msg
-            raise FileError(msg)
+            raise FileTypeError(msg)
         
     def _initArgs(self):
         """

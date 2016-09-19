@@ -10,13 +10,14 @@ class TestCalcDistance(CafePyTestBase):
     @classmethod
     def setUpClass(cls):
         from cafepy.core.calc_distance import CalcDistance
-        cls.testpath = os.path.join(os.path.dirname(__file__), 'data/test.dcd')
-    
+        cls._set_data_path(cls)        
+        cls.tcls = CalcDistance(cls.data_path + 'test.dcd')
+        
     def setUp(self):
         pass
 
     def test_init_func(self):
-        cdist = CalcDistance(self.testpath)
+        pass
     
     def tearDown(self):
         pass

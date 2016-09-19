@@ -25,7 +25,7 @@ class CalcDistance(object):
     Examples:
     # In Python scripts.
         # filename = [pdb, dcd]-file
-        tmp = CalcDist(filename)
+        tmp = CalcDistance(filename)
         tmp.calcDist():
         tmp.writeFile("outfile") or  tmp.writeShow()
     # In Terminal.
