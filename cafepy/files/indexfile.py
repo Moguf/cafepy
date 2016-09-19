@@ -35,7 +35,7 @@ class Index(FileIO):
     def __init__(self, filename):
         self.data = []
         self.filename = filename
-        self._read(filename)
+        self.data = self._read(filename)
     
     def _read(self, filename):
         """
@@ -48,7 +48,6 @@ class Index(FileIO):
         ## 
         
         self.closeFile()
-        
         return out
 
     def main(self):
