@@ -17,6 +17,6 @@ class CafePyTestBase(unittest.TestCase):
         sets test data path.
         """
         self.data_path = os.path.join(os.path.dirname(__file__), 'data/')
-
+        sys.path.append(os.path.join(os.path.dirname(__file__), 'data/'))
         
         

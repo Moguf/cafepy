@@ -27,8 +27,9 @@ class TestReadIndex(CafePyTestBase):
         pass
 
     def test_read_index_file(self):
-        self.assertEqual(self.icls.data, [0, 1, 2, 3, 4, 5, 6, 7, 8, 99, 10, 9, 1999])
-        
+        self.assertEqual(self.icls.data, [1, 2, 3, 4, 5, 6, 7, 8, 10, 30])
+
+    
     def tearDown(self):
         pass
 

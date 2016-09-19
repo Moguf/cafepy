@@ -27,8 +27,6 @@ class Index(FileIO):
         
     .. methods:: openFile(filename)
         
-    
-
     :_file: file-object
     :data: create list data from read.
     """
@@ -50,5 +48,4 @@ class Index(FileIO):
         self.closeFile()
         return out
 
-    
     
