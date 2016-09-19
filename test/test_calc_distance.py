@@ -4,7 +4,7 @@ import os
 import sys
 import unittest
 
-from test_base import CafePyTestBase
+from .test_base import CafePyTestBase
 
 from cafepy.core.calc_distance import CalcDistance
 

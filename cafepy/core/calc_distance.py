@@ -21,19 +21,30 @@ from ..utils.cafepy_base import CafePyBase
 
 class CalcDistance(CafePyBase):
     """
-    Calculating the distance between atoms
-    Examples:
-    # In Python scripts.
+    Calculating the distance between atoms.
+
+    *Examples*
+
+    .. code-block:: python
+
         # filename = [pdb, dcd]-file
         tmp = CalcDistance(filename)
-        tmp.calcDist():
-        tmp.writeFile("outfile") or  tmp.writeShow()
-    # In Terminal.
+        tmp.calcDist()
+        tmp.dist_data()
+
+    .. code-block:: bash    
         # pycafe.py com -i [dcd,pdb]-infile [optional: -o outfile, -n index.file or int-value] 
+    
+    *Members*
+    
+    :self.index:   Index class.
+    :self.filename:  dcd or pdb file path.
+    :self.pairlist:  this values is came from self.index.
+    :self.dist_data:  contains result after calculating pair distances.
+
     """
     def __init__(self, filename, index=''):
-        self.dcd = None
-        self.pdb = None
+
         self.index = []
         self.filename = filename
         self.data = self.read(filename)
@@ -42,32 +53,59 @@ class CalcDistance(CafePyBase):
         self.dist_data = [[] for i in range(len(self.pairlist))]
 
     def calcDist(self):
+        '''
+        calculate distances between given pairs.
+        :inputs:  None
+        :return:  results
+        '''
+        
         out = []
         if self.data.ftype == 'dcd':
-            out = self.calcDistDCD()
+            out = self._calcDistDCD()
         elif self.data.ftype == 'pdb':
-            out = self.calcDistPDB()
+            out = self._calcDistPDB()
         return out
     
-    def calcDistDCD(self):
+    def _calcDistDCD(self):
+        '''
+        calculate distances between given pairs from PDB files.
+        this class is called from self.calcDist()
+        :inputs:  None
+        :return:  results
+        '''
         for icoord in self.data:
             for i, pair in enumerate(self.pairlist):
                 self.dist_data[i].append(euc(icoord[pair[0]],icoord[pair[1]]))
         return self.dist_data
         
-    def calcDistPDB(self):
+    def _calcDistPDB(self):
+        '''
+        calculate distances between given pairs from PDB files.
+        this class is called from self.calcDist()
+        :inputs:  None
+        :return:  results
+        '''
         for i, pair in enumerate(self.pairlist):
             self.dist_data[i] = euc(self.data[pair[0]],self.data[pair[1]])
         return self.dist_data
 
-
     def makePair(self, index):
+        '''
+        make pairs from index[list-foarmat]
+        :inputs:  list-format
+        :return:  pairs list
+        '''
         pairlist = []
         for i in range(len(index))[::2]:
             pairlist.append([index[i], index[i+1]])
         return pairlist
             
     def getIndex(self, index):
+        '''
+        get indexes from file for list.
+        :inputs:  index (filename or list-format)
+        :return:  self.index ( list-format )
+        '''
         if isinstance(index, str):
             self.index = self.read(index).data
         elif isinstance(index, list):

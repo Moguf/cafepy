@@ -4,7 +4,7 @@
 import os
 import codecs
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Extension
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -12,6 +12,11 @@ def read(*parts):
     # intentionally *not* adding an encoding option to open, See:
     #   https://github.com/pypa/virtualenv/issues/201#issuecomment-3145690
     return codecs.open(os.path.join(here, *parts), 'r').read()
+
+
+mod_qscore = Extension('qscore',
+                       sources = ['lib/src/calc_qscore_c.cpp'])
+
 
 setup(
     name='CafePy',
@@ -36,7 +41,8 @@ setup(
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
         'Programming Language :: Python',
         'Topic :: Scientific/Engineering :: Physics',
-    ]
+    ],
+    ext_modules=[mod_qscore]
 )
 
 
