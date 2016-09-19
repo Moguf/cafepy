@@ -34,6 +34,7 @@ class Index(FileIO):
     """
     def __init__(self, filename):
         self.data = []
+        self.ftype = 'ninfo'
         self.filename = filename
         self.data = self._read(filename)
     
@@ -45,16 +46,9 @@ class Index(FileIO):
 
         out = list(set([int(i) for i in fp.read().split() if i[0] != "#"]))
         ## read integer from file, ignore "#" line ,and dicard dupilicate number.
-        ## 
         
         self.closeFile()
         return out
 
-    def main(self):
-        pass
-
-if __name__ == "__main__":
-    tmp = Index()
-    tmp.main()
     
     

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# fileencoding:utf-8
 """
 :Editer:    Mogu
 :Version: 0.0.1dev
@@ -15,11 +15,9 @@ example:
     cafepy distance -f test.dcd[.pdb]
 """
 
-from ..files.dcdfile import DCD
-from ..files.pdbfile import PDB
-from ..files.indexfile import Index
+from ..utils.cafepy_base import CafePyBase
 
-class CalcDistance(object):
+class CalcDistance(CafePyBase):
     """
     Calculating the distance between atoms
     Examples:
@@ -31,32 +29,25 @@ class CalcDistance(object):
     # In Terminal.
         # pycafe.py com -i [dcd,pdb]-infile [optional: -o outfile, -n index.file or int-value] 
     """
-    def __init__(self, filename):
+    def __init__(self, filename, index=''):
         self.dcd = None
         self.pdb = None
         self.index = None
         self.filename = filename
-        self._read(filename)
-
-    def _read(self, filename=""):
-        suffix = filename.split('.')[-1]
+        self.data = self.read(filename)
+        self.index = self.getIndex(index)
         
-        
-        
-        
-    def readDCD(self):
-        self.dcd = DCD(filename)
-
-    def readPDB(self):
-        self.pdb = PDB(filename)
-
-    def readIndex(self):
-        self.index = Index(filename)
-        
-
     def calcDist(self):
-        pass
-    
+        if self.data.ftype == 'dcd':
+            print(">>>>", self.data[:])
+        
+    def getIndex(self, index):
+        if index:
+            if isinstance(index, str):
+                self.index = self.read(index)
+            elif isinstance(index, list):
+                self.index = index
+        return self.index
 
     def writeFile(self):
         pass
@@ -64,17 +55,4 @@ class CalcDistance(object):
     def writeShow(self):
         pass
 
-    
-    def main(self):
-        """
-        Supporting comand line interfaces.
-        # Examples:
-            calc_com.py -i [dcd,pdb]-file [optional: -o outfile, -n index.file or int-values] 
-        """
-        pass
-
-    
-if __name__ == "__main__":
-    tmp = CalcCOM()
-    tmp.main()
     

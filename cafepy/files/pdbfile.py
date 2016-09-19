@@ -22,7 +22,7 @@ from .file_io import FileIO
 from ..utils.cafepy_error import CafePyError
 from ..utils.cafepy_base import CafePyBase
         
-class PDB(CafePyBase,FileIO):
+class PDB(CafePyBase, FileIO):
     """
     Reading a PDB(Protein Data Bank) file which is an output from CafeMol Software.
     This class returns coordinates as list format. Please check examples below.
@@ -43,6 +43,7 @@ class PDB(CafePyBase,FileIO):
     def __init__(self, filename):
         FileIO.__init__(self)
         self.filename = filename
+        self.ftype = 'pdb'
         self.coard = []
         self.row_data = []
         self._read()

@@ -69,6 +69,7 @@ class Ninfo(object):
     
     def __init__(self, filename):
         self.filename = filename
+        self.ftype = 'ninfo'
         self.data = OrderedDict()
         self.keys = ["bond", "angl", "aicg13", "aicgdih", "dihd", "contact"]
         for ikey in self.keys:

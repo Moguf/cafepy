@@ -7,15 +7,13 @@
 *Contents*
 
 * CafePyBase
-"""
 
+"""
 
 import os
 import sys
 
-
 from .cafepy_error import FileTypeError
-
 
 class CafePyBase(object):
     """
@@ -52,7 +50,7 @@ class CafePyBase(object):
         elif sfx == 'ninfo':
             data = Ninfo(filename)
         elif sfx == 'ndx':
-            data = Index(filename, )
+            data = Index(filename)
         else:
             msg = 'Please set a suffix of file in [pdb, dcd, ndx, psf]'
             raise FileTypeError(msg)
@@ -62,12 +60,6 @@ class CafePyBase(object):
     def getSuffix(self, filename):
         return filename.split('.')[-1]
 
-
-    def _readPDB(self):
-        pass
-
-    def _readDCD(self):
-        pass
 
     def _readIndex(self):
         pass

@@ -10,10 +10,13 @@
 .. |Travis| image:: https://travis-ci.org/Moguf/cafepy.svg?branch=master
 .. _Travis: https://travis-ci.org/Moguf/cafepy
 
+
 .. |Coveralls| image:: https://coveralls.io/repos/github/Moguf/cafepy/badge.svg?branch=master&service=github
 .. _Coveralls: https://coveralls.io/github/Moguf/cafepy?branch=master
+  :target: https://coveralls.io/github/Moguf/cafepy?branch=master
 
-         
+
+
 .. |Python35| image:: https://img.shields.io/badge/python-3.5-blue.svg
 
 .. |PyPi| image:: https://badge.fury.io/py/CafePy.svg                      

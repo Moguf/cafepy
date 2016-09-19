@@ -97,6 +97,7 @@ class DCD(CafePyBase,FileIO):
     """
     def __init__(self, filename):
         FileIO.__init__(self)
+        self.ftype = 'dcd'
         self.inputfile = filename
         self._file = ""
         self._header = DcdHeader()
