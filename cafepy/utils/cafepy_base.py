@@ -15,9 +15,6 @@ import sys
 
 
 from .cafepy_error import FileTypeError
-from ..files.dcdfile import DCD
-from ..files.pdbfile import PDB
-from ..files.indexfile import Index
 
 
 class CafePyBase(object):
@@ -28,22 +25,37 @@ class CafePyBase(object):
     
     def __init__(self):
         self.filename = ''
-
+        self.sfx = ''
 
     def read(self, filename):
-        sfx = getSuffix(filename)
+        """
+        read [pdb, dcd, index] files. This function define reading type from files suffix. you need to set a proper suffix with filename.
+
+        :inputs:  filename(str)
+        :return:  class [DCD, PDB, Index]
+
+        """
+        from ..files.dcdfile import DCD
+        from ..files.pdbfile import PDB
+        from ..files.indexfile import Index
+        from ..files.ninfofile import Ninfo        
+
+        self.filename = filename
+        sfx = self.getSuffix(filename)
+        self.sfx = sfx
         data = None
 
         if sfx == 'pdb':
             data = PDB(filename)
         elif sfx == 'dcd':
             data = DCD(filename)
+        elif sfx == 'ninfo':
+            data = Ninfo(filename)
         elif sfx == 'ndx':
-            data = Inde(filename)
+            data = Index(filename, )
         else:
             msg = 'Please set a suffix of file in [pdb, dcd, ndx, psf]'
             raise FileTypeError(msg)
-
         return data
         
 

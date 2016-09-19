@@ -32,11 +32,12 @@ class Index(FileIO):
     :_file: file-object
     :data: create list data from read.
     """
-    def __init__(self):
+    def __init__(self, filename):
         self.data = []
-        
+        self.filename = filename
+        self._read(filename)
     
-    def read(self,filename):
+    def _read(self, filename):
         """
         return list-object
         """

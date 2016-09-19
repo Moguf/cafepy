@@ -22,7 +22,7 @@ from ..files.file_io import FileIO
 from ..files.dcdfile import DCD
 from ..files.pdbfile import PDB
 from ..files.indexfile import Index
-from ..files.moviefile import WriteMovie
+from ..files.moviefile import Movie
 
 class CalcCOM(object):
     """

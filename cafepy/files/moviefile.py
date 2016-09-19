@@ -21,10 +21,10 @@ import sys
 
 #### My Module
 from .file_io import FileIO
-from ..utils.cafepy_error import ReadingError,FileError
+from ..utils.cafepy_error import ReadingError
 from ..utils.cafepy_base import CafePyBase
         
-class WriteMovie(CafePyBase,FileIO):
+class Movie(CafePyBase, FileIO):
     """
     Reading a PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """

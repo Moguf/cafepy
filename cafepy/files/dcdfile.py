@@ -31,7 +31,7 @@ import struct
 #### My Module
 from .file_io import FileIO
 from .pdbfile import PDB
-from ..utils.cafepy_error import ReadingError, FileError
+from ..utils.cafepy_error import ReadingError
 from ..utils.cafepy_base import CafePyBase
 
 class DcdHeader:
@@ -120,7 +120,7 @@ class DCD(CafePyBase,FileIO):
         #bdata = struct.unpack('4siii5iid9i',b)
         if bdata[0] != b'CORD' :
             msg = "CAUTION:%s is not Dcd formats." % self.inputfile
-            raise FileError(__file__,"readHeader()",msg)
+            raise ReadingError(__file__, "readHeader()", msg)
 
         self._header.nset = bdata[1]
         self._header.istart = bdata[2]
