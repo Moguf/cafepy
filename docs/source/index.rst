@@ -5,7 +5,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-|Travis|_ |Coveralls|_ |Python35|  |PyPi|_
+|Travis|_ |Coveralls|_ |Python35|  |PyPi|_ |Downloads| |docs|
 
 .. |Travis| image:: https://travis-ci.org/Moguf/cafepy.svg?branch=master
 .. _Travis: https://travis-ci.org/Moguf/cafepy
@@ -16,12 +16,16 @@
   :target: https://coveralls.io/github/Moguf/cafepy?branch=master
 
 
-
 .. |Python35| image:: https://img.shields.io/badge/python-3.5-blue.svg
 
 .. |PyPi| image:: https://badge.fury.io/py/CafePy.svg                      
 .. _PyPi: https://badge.fury.io/py/CafePy
 
+.. |Downloads| image:: https://img.shields.io/pypi/dm/CafePy.svg
+   :target: https://pypi.python.org/pypi/Cafepy
+          
+.. |docs| image:: https://readthedocs.org/projects/grab/badge/?version=latest
+   :target: http://cafepy.readthedocs.io/en/latest/
 
 
 

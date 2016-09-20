@@ -14,9 +14,10 @@ This class caluclates the distance between atoms from [dcd, pdb]-files.
 example:
     cafepy distance -f test.dcd[.pdb]
 """
-
+import os
+import sys
 from ..utils.cafepy_base import CafePyBase
-import qscore
+
 
 class CalcQscore(CafePyBase):
     """
@@ -31,6 +32,8 @@ class CalcQscore(CafePyBase):
         # pycafe.py com -i [dcd,pdb]-infile [optional: -o outfile, -n index.file or int-value] 
     """
     def __init__(self, filename, ninfo='', cutoff=12.0):
+        
+        import qscore
         self.filename = filename
         self.data = self.read(filename)
         self.ninfo = self.read(ninfo)

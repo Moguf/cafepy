@@ -12,6 +12,7 @@
 
 import os
 import sys
+import grab
 
 from .cafepy_error import FileTypeError
 
@@ -64,5 +65,8 @@ class CafePyBase(object):
     def _readIndex(self):
         pass
 
-    
+
+    def setClibPath(self):
+        sys.path.append((os.path.join(os.path.dirname(__file__), '../../build/lib.*/')))
+
     
