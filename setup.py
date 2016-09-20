@@ -15,8 +15,7 @@ def read(*parts):
 
 
 mod_qscore = Extension('qscore',
-                       sources = ['lib/src/calc_qscore_c.cpp'])
-
+                       sources = ['clib/src/calc_qscore_c.cpp'])
 
 setup(
     name='CafePy',

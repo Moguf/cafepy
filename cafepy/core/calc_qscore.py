@@ -16,6 +16,7 @@ example:
 """
 
 from ..utils.cafepy_base import CafePyBase
+import qscore
 
 class CalcQscore(CafePyBase):
     """

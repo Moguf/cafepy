@@ -10,18 +10,19 @@ from .test_base import CafePyTestBase
 class TestCalcQscore(CafePyTestBase):
     @classmethod
     def setUpClass(cls):
-        from cafepy.core.calc_qscore import CalcDistance
+        from cafepy.core.calc_qscore import CalcQscore
+        from qscore import qscore
+        print(qscore([0,0,0],[1,1,1]))
         cls._set_data_path(cls)
         dcd = cls.data_path + 'test.dcd'
         ndx = cls.data_path + 'test_index.ndx'
-        cls.dcls = CalcDistance(dcd, ndx)
-        
+
     def setUp(self):
         pass
 
     def test_read_files(self):
         print('>>>>')
-        print(self.dcls.data[:])
+
 
     
     def tearDown(self):
