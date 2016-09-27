@@ -11,8 +11,6 @@ class TestCalcQscore(CafePyTestBase):
     @classmethod
     def setUpClass(cls):
         from cafepy.core.calc_qscore import CalcQscore
-        from qscore import qscore
-        print(qscore([0,0,0],[1,1,1]))
         cls._set_data_path(cls)
         dcd = cls.data_path + 'test.dcd'
         ndx = cls.data_path + 'test_index.ndx'

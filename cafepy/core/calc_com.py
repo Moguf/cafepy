@@ -18,13 +18,9 @@ import numpy as np
 import scipy as sc
 
 ## My module
-from ..files.file_io import FileIO
-from ..files.dcdfile import DCD
-from ..files.pdbfile import PDB
-from ..files.indexfile import Index
-from ..files.moviefile import Movie
+from ..utils.cafepy_base import CafePyBase
 
-class CalcCOM(object):
+class CalcCOM(CafePyBase):
     """
     Calculating the center of mass from [dcd,pdb]-files
 
@@ -43,37 +39,35 @@ class CalcCOM(object):
 
          pycafe.py com -f [dcd,pdb]-infile [optional: -o outfile, -nf index.file or -n int-value] 
     """
-    def __init__(self):
+    def __init__(self, inputfile, *args, **kargs):
         self.dcdfile = ""
         self.pdbfile = ""
         self.data = []
         self.com = []
+        self._read(inputfile)
         
-    def readDCD(self, inputfile):
+    def _read(self, inputfile):
         self.dcdfile = inputfile
-        self.data = DCD(inputfile)
+        self.data = self.read(inputfile)   # from CafePyBase
         
-    def readPDB(self):
-        #
-        pass
 
     def readIndex(self):
         pass
 
-
-    def calcCOM(self, atom_index=[], traj_index=[]):
+    def run(self, atom_indexes=[], traj_indexes=[]):
         """ 
         Calculates the Center of mass from DCD-file or PDB-file.
 
-        :atom_index:    You can select Atom for calculating COM with index[.ndx,.ninfo]-file 
-        :traj_index:    You can extract trajectories for calculating COM.
+        :Args: atom_indexes (list), traj_indexes (list)
+            :atom_indexes:    You can select Atom for calculating COM with indexes[.ndx,.ninfo]-file 
+            :traj_indexes:    You can extract trajectories for calculating COM.
 
         """
-        if not atom_index:
+        if not atom_indexes:
             self.com = np.average(self.data[:], axis=1)
         else:
             ndata = np.array(self.data)
-            self.com = np.average(ndata[:, atom_index], axis=1)
+            self.com = np.average(ndata[:, atom_indexes], axis=1)
 
     def writeFile(self, outputfile, header= ""):
         np.savetxt(outputfile, self.com, header=header, fmt="%.8e")
@@ -83,17 +77,4 @@ class CalcCOM(object):
 
     def close(self):
         self.data.close()
-    
-    def main(self):
-        """
-        Supporting comand line interfaces.
-        # Examples:
-            calc_com.py -i [dcd,pdb]-file [optional: -o outfile, -n index.file or int-values] 
-        """
-        pass
-    
-    
-if __name__ == "__main__":
-    tmp = CalcCOM()
-    tmp.main()
-    
+        

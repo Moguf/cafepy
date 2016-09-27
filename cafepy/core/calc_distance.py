@@ -76,7 +76,7 @@ class CalcDistance(CafePyBase):
         '''
         for icoord in self.data:
             for i, pair in enumerate(self.pairlist):
-                self.dist_data[i].append(euc(icoord[pair[0]],icoord[pair[1]]))
+                self.dist_data[i].append(euc(icoord[pair[0]], icoord[pair[1]]))
         return self.dist_data
         
     def _calcDistPDB(self):
@@ -87,18 +87,18 @@ class CalcDistance(CafePyBase):
         :return:  Distances (list)
         '''
         for i, pair in enumerate(self.pairlist):
-            self.dist_data[i] = euc(self.data[pair[0]],self.data[pair[1]])
+            self.dist_data[i] = euc(self.data[pair[0]], self.data[pair[1]])
         return self.dist_data
 
-    def makePair(self, index):
+    def makePair(self, index_list):
         '''
         make pairs from index[list-foarmat]
-        :Args:  index
+        :Args:  index_list (list)
         :return:  pairs (list)
         '''
         pairlist = []
-        for i in range(len(index))[::2]:
-            pairlist.append([index[i], index[i+1]])
+        for i in range(len(index_list))[::2]:
+            pairlist.append([index_list[i], index_list[i+1]])
         return pairlist
             
     def getIndex(self, index):

@@ -24,16 +24,16 @@ class TestCalcDistance(CafePyTestBase):
 
     def test_calc_distance_from_dcd(self):
         self.dcls = CalcDistance(self.dcd, self.ndx)
-        self.dcls.calcDist()
+        self.dcls.run()
         self.assertEqual(self.dcls.dist_data, self.fdist)
 
     def test_calc_distance_from_pdb(self):
         self.dcls = CalcDistance(self.pdb, self.ndx)
-        self.assertEqual(self.dcls.calcDist(), [1.5308122027211573,
-                                                2.7629712267774345,
-                                                2.4108355398077244,
-                                                3.015551359204481,
-                                                7.581407850788664] )
+        self.assertEqual(self.dcls.run(), [1.5308122027211575,
+                                           2.7629712267774345,
+                                           2.4108355398077244,
+                                           3.015551359204481,
+                                           7.581407850788664] )
         
     def tearDown(self):
         pass

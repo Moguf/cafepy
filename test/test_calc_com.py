@@ -14,7 +14,7 @@ class TestCalcCOM(unittest.TestCase):
     def setUpClass(cls):
         cls.testpath = os.path.join(os.path.dirname(__file__), 'data/test.dcd')
         listpath = os.path.join(os.path.dirname(__file__), 'data/')
-        cls.com = CalcCOM()
+        cls.com = CalcCOM(cls.testpath)
         sys.path.append(listpath)
         from test_data_in_calc_com import center_of_mass_trajectory_test_data ,\
             center_of_mass_trajectory_test_data_5_atoms
@@ -23,10 +23,6 @@ class TestCalcCOM(unittest.TestCase):
         cls.com_5_atoms = center_of_mass_trajectory_test_data_5_atoms
     def setUp(self):
         pass
-    
-    def test_readDcd(self):
-        self.com.readDCD(self.testpath)
-        self.com.close()
         
     def test_readPDB(self):
         pass
@@ -35,23 +31,24 @@ class TestCalcCOM(unittest.TestCase):
     def test_readIndex(self):
         pass
         
-
     def test_calc_com_from_dcd(self):
-        com = CalcCOM()
-        com.readDCD(self.testpath)
-        com.calcCOM()
+        com = CalcCOM(self.testpath)
+        com.run()
         self.assertEqual(com.com.tolist(), self.com_data)
         com.close()
         
-    def test_calcCOMfromDCD_with_index(self):
-        com = CalcCOM()
-        com.readDCD(self.testpath)
-        com.calcCOM([1,2,3,4,5])
+    def test_run_with_indexes_from_dcd(self):
+        com = CalcCOM(self.testpath)        
+        com.run([1,2,3,4,5])
         self.assertEqual(com.com.tolist(), self.com_5_atoms)
         com.close()
         
-    def test_calcCOMfromDCD_with_slices(self):
-        pass
+    def test_calcCOMfromDCD_with_range(self):
+        com = CalcCOM(self.testpath)        
+        com.run(range(1,6))
+        self.assertEqual(com.com.tolist(), self.com_5_atoms)
+        com.close()
+        
 
     def test_calcCOMfromDCD_with_index_and_slices(self):
         pass
