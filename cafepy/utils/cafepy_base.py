@@ -12,7 +12,6 @@
 
 import os
 import sys
-import grab
 
 from .cafepy_error import FileTypeError
 

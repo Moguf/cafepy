@@ -6,7 +6,7 @@ moviefile
 
 
 
-.. autoclass:: WriteMovie
-    :members: closeFile, main, openFile
+.. autoclass:: Movie
+    :members: _readIndex, closeFile, getSuffix, main, openFile, read, setClibPath
 
 

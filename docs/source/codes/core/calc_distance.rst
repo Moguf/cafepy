@@ -7,6 +7,6 @@ calc_distance
 
 
 .. autoclass:: CalcDistance
-    :members: calcCOMfromDCD, calcCOMfromPDB, main, readDCD, readIndex, readPDB, writeFile, writeShow
+    :members: _calcDistDCD, _calcDistPDB, _readIndex, getIndex, getSuffix, makePair, read, run, setClibPath, writeFile, writeShow
 
 

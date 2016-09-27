@@ -13,6 +13,6 @@ dcdfile
 
 
 .. autoclass:: DCD
-    :members: _pick_data, _read, _readOneFrame, close, closeFile, extract, openFile, readHeader, readHeaderSize, write
+    :members: _pick_data, _read, _readIndex, _readOneFrame, close, closeFile, extract, getSuffix, openFile, read, readHeader, readHeaderSize, setClibPath, write
 
 

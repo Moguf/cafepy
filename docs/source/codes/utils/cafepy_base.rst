@@ -7,6 +7,6 @@ cafepy_base
 
 
 .. autoclass:: CafePyBase
-    :members: 
+    :members: _readIndex, getSuffix, read, setClibPath
 
 

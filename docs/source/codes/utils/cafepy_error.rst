@@ -24,7 +24,7 @@ cafepy_error
 
 
 
-.. autoclass:: FileError
+.. autoclass:: FileTypeError
     :members: args, with_traceback
 
 
