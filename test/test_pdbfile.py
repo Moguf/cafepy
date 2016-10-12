@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 cafepypath = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(cafepypath)
-from cafepy.files import PDB
+from cafepy.files import PDB, CGPDB
 
 class TestPDB(unittest.TestCase):
     @classmethod
@@ -28,14 +28,14 @@ class TestPDB(unittest.TestCase):
     def test_readPDB_with_terminal_slices(self):
         self.assertEqual(self.pdb[:2], self.pdblist[:2])
 
-    def test_readPDB_with_terminal_slices(self):
+    def test_readPDB_with_terminal_slices1(self):
         self.assertEqual(self.pdb[1:4], self.pdblist[1:4])
 
-    def test_readPDB_with_terminal_slices(self):
-        self.assertEqual(self.pdb[:2], self.pdblist[:2])
+    def test_readPDB_with_terminal_slices2(self):
+        self.assertEqual(self.pdb[:-1], self.pdblist[:-1])
         
-    def test_readPDB_with_terminal_slices(self):
-        self.assertEqual(self.pdb[:2], self.pdblist[:2])
+    def test_readPDB_with_terminal_slices3(self):
+        self.assertEqual(self.pdb[::], self.pdblist[::])
         
         
     def test_len(self):
@@ -50,7 +50,27 @@ class TestPDB(unittest.TestCase):
         pass
 
 class TestCGPDB(unittest.TestCase):
-    pass
+    @classmethod
+    def setUpClass(cls):
+        cls.testdata = os.path.join(os.path.dirname(__file__), 'data/cgtest.pdb')
+        cls.listdata = os.path.join(os.path.dirname(__file__), 'data/')
+        sys.path.append(cls.listdata)
+        cls.cgpdb = CGPDB(cls.testdata)
+
+    def tearDown(self):
+        pass
+
+    def test_read_cgpdb(self):
+        
+    
+    @classmethod
+    def tearDownClass(cls):
+        pass
+
+
     
 if __name__ == "__main__":
-    unittest.main()
+    suite1 = unittest.TestLoader().loadTestsFromTestCase(TestPDB)
+    suite2 = unittest.TestLoader().loadTestsFromTestCase(TestCGPDB)
+    suite = unittest.TestSuite([suite1, suite2])
+    unittest.TextTestRunner(verbosity=2).run(suite)

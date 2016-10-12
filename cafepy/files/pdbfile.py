@@ -110,7 +110,7 @@ class CGPDB(CafePyBase, FileIO):
     """
     Reading a Coarse-Grained PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
-    def __init__(self):
+    def __init__(self, filename):
         pass
 
     
