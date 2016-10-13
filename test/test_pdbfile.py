@@ -61,7 +61,7 @@ class TestCGPDB(unittest.TestCase):
         pass
 
     def test_read_cgpdb(self):
-        
+        pass
     
     @classmethod
     def tearDownClass(cls):
