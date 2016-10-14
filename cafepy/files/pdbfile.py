@@ -111,7 +111,23 @@ class CGPDB(CafePyBase, FileIO):
     Reading a Coarse-Grained PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
     def __init__(self, filename):
-        pass
+        self.filename = filename
+        self.ATOM = []
+        self._read()
+        
+    def _read(self):
+        self._file = self.openFile(self.filename)
+        self.readATOM()
+        
+    def readATOM(self):
+        _format = [(6,11,int),(12,16,str),(17,20,str),                  #serial,atomName,resName
+                   (21,22,str),(22,26,int),                             #chainID,resSeq
+                   (30,38,float),(38,46,float),(46,54,float)]
+        for line in self._file.readlines():
+            if re.match(r"(ATOM)", line):
+                self.ATOM.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
+        return self.ATOM
+        
 
     
 if __name__ == "__main__":

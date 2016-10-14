@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ #!/usr/bin/env python3
 # coding:utf-8
 import os
 import sys
@@ -56,12 +56,14 @@ class TestCGPDB(unittest.TestCase):
         cls.listdata = os.path.join(os.path.dirname(__file__), 'data/')
         sys.path.append(cls.listdata)
         cls.cgpdb = CGPDB(cls.testdata)
+        from test_data_in_pdbfile import list_cgpdb_data
+        cls.cgpdb_list = list_cgpdb_data
 
     def tearDown(self):
         pass
 
     def test_read_cgpdb(self):
-        pass
+        self.assertEqual(self.cgpdb.ATOM, self.cgpdb_list)
     
     @classmethod
     def tearDownClass(cls):
