@@ -20,14 +20,18 @@ class TestCafepyMath(unittest.TestCase):
         sys.path.append(cls.listdata)
         from test_data_in_pdbfile import list_pdb_coord
         cls.coord = list_pdb_coord
-        cls.zaxis = [[0., 0., float(i)] for i in range(10)]
+        cls.zaxis = [[0., 0., float(i)/10] for i in range(10)]
 
     def test_rotation3d_zaixs(self):
         self.assertEqual(self.zaxis, cmath.rotation3D(self.zaxis, 0., 0., np.pi/3))
 
     def test_rotation3d_xaixs(self):
-        print(self.zaxis, cmath.rotation3D(self.zaxis, np.pi/2, 0., 0.))        
+        yaxis = [[0., -float(i)/10, 0.] for i in range(10)]
+        self.assertEqual(yaxis, cmath.rotation3D(self.zaxis, np.pi/2, 0., 0.))        
 
+    def test_rotation3d_yaixs(self):
+        xaxis = [[-float(i)/10, 0., 0.] for i in range(10)]
+        self.assertEqual(xaxis, cmath.rotation3D(self.zaxis, 0., np.pi/2, 0.))        
 
 
 if __name__ == '__main__':

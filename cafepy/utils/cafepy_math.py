@@ -17,5 +17,5 @@ def rotation3D(coord, alpha, beta, gamma):
     Rmat = Rx * Ry * Rz
     com = np.average(coord, axis=0)
     #coordR = (coord - com) * Rmat + com
-    coordR = coord * Rmat
+    coordR = np.round(coord * Rmat, 2)
     return coordR.tolist()
