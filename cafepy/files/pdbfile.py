@@ -21,6 +21,7 @@ import sys
 from .file_io import FileIO
 from ..utils.cafepy_error import CafePyError
 from ..utils.cafepy_base import CafePyBase
+from ..utils.cafepy_math import rotation3D
         
 class PDB(CafePyBase, FileIO):
     """
@@ -113,6 +114,7 @@ class CGPDB(CafePyBase, FileIO):
     def __init__(self, filename):
         self.filename = filename
         self.ATOM = []
+        self.coords = []
         self._read()
         
     def _read(self):
@@ -127,7 +129,9 @@ class CGPDB(CafePyBase, FileIO):
             if re.match(r"(ATOM)", line):
                 self.ATOM.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
         return self.ATOM
-        
+
+    def rotation(self, alpha, beta, gamma):
+        self.coords = rotation3D(self.coords, alpha, beta, gamma)
 
     
 if __name__ == "__main__":
