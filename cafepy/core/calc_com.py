@@ -28,9 +28,8 @@ class CalcCOM(CafePyBase):
     
     .. code-block:: python
 
-        tmp = CalcCom()
-        tmp.readDCD("dcdfile")   or  tmp.readPDB("pdbfile")
-        tmp.calcCOM()
+        tmp = CalcCom("filename") # both dcd-format and pdb-format are ok
+        tmp.run()
         tmp.writeFile("outfile") or  tmp.writeShow()
 
     *In Terminal.*
@@ -47,14 +46,12 @@ class CalcCOM(CafePyBase):
         self._read(inputfile)
         
     def _read(self, inputfile):
-        self.dcdfile = inputfile
         self.data = self.read(inputfile)   # from CafePyBase
         
-
     def readIndex(self):
         pass
 
-    def run(self, atom_indexes=[], traj_indexes=[]):
+    def run(self, atom_indexes=[], unit_indexes=[], traj_indexes=[]):
         """ 
         Calculates the Center of mass from DCD-file or PDB-file.
 
@@ -63,11 +60,28 @@ class CalcCOM(CafePyBase):
             :traj_indexes:    You can extract trajectories for calculating COM.
 
         """
+        if self.sfx == 'dcd':
+            return self._dcdrun(atom_indexes, unit_indexes, traj_indexes)
+        elif self.sfx == 'pdb':
+            return self._pdbrun(atom_indexes, unit_indexes)
+        
+    def _dcdrun(self, atom_indexes=[], unit_indexes=[], traj_indexes=[]):
         if not atom_indexes:
             self.com = np.average(self.data[:], axis=1)
         else:
             ndata = np.array(self.data)
             self.com = np.average(ndata[:, atom_indexes], axis=1)
+        return self.com
+
+    def _pdbrun(self, atom_indexes=[], unit_index=[]):
+        if not atom_indexes:
+            self.com = np.average(self.data[:], axis=0)
+        else:
+            ndata = np.array(self.data)
+            self.com = np.average(ndata[:, atom_indexes], axis=1)
+        return self.com
+        
+            
 
     def writeFile(self, outputfile, header= ""):
         np.savetxt(outputfile, self.com, header=header, fmt="%.8e")

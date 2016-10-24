@@ -3,6 +3,12 @@ CafePy API's
 
 Cafepy API's provide how to use this modules. You can understand what to do and how to do with cafepy in your program. 
 
+.. toctree::
+   :maxdepth: 1
+              
+   codes/coding_guide.rst
+
+
 Scripts
 -------
 

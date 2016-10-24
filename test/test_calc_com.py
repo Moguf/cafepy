@@ -4,47 +4,58 @@ import os
 import sys
 import unittest
 
-cafepypath = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(cafepypath)
-
 from cafepy.core import CalcCOM
 
-class TestCalcCOM(unittest.TestCase):
+from .test_base import CafePyTestBase
+
+class TestCalcCOM(CafePyTestBase):
     @classmethod
     def setUpClass(cls):
-        cls.testpath = os.path.join(os.path.dirname(__file__), 'data/test.dcd')
-        listpath = os.path.join(os.path.dirname(__file__), 'data/')
-        cls.com = CalcCOM(cls.testpath)
-        sys.path.append(listpath)
+        pass
+        
+    def setUp(self):
         from test_data_in_calc_com import center_of_mass_trajectory_test_data ,\
             center_of_mass_trajectory_test_data_5_atoms
-        
-        cls.com_data = center_of_mass_trajectory_test_data
-        cls.com_5_atoms = center_of_mass_trajectory_test_data_5_atoms
-    def setUp(self):
-        pass
-        
-    def test_readPDB(self):
-        pass
+        self.com_data = center_of_mass_trajectory_test_data
+        self.com_5_atoms = center_of_mass_trajectory_test_data_5_atoms
 
+        self.dcd = self.data_path+'test.dcd'
+        self.pdb = self.data_path+'test.pdb'
+        self.cgpdb = self.data_path+'cgtest.pdb'
+        self.bpdb = self.data_path+'big_test.pdb'                        
+
+
+    def test_readPDB(self):
+        com = CalcCOM(self.pdb)
+        com.run()
+        ans = [17.16436541,   3.21423024,  -4.56492325]
+        for x, a in zip(com.com.tolist(), ans):
+            self.assertAlmostEqual(x, a)        
+
+        
+    def test_readBigPDB(self):
+        com = CalcCOM(self.bpdb)
+        
+    def test_readCGPDB(self):
+        com = CalcCOM(self.cgpdb)
         
     def test_readIndex(self):
         pass
         
     def test_calc_com_from_dcd(self):
-        com = CalcCOM(self.testpath)
+        com = CalcCOM(self.dcd)
         com.run()
         self.assertEqual(com.com.tolist(), self.com_data)
         com.close()
         
     def test_run_with_indexes_from_dcd(self):
-        com = CalcCOM(self.testpath)        
+        com = CalcCOM(self.dcd)        
         com.run([1,2,3,4,5])
         self.assertEqual(com.com.tolist(), self.com_5_atoms)
         com.close()
         
     def test_calcCOMfromDCD_with_range(self):
-        com = CalcCOM(self.testpath)        
+        com = CalcCOM(self.dcd)        
         com.run(range(1,6))
         self.assertEqual(com.com.tolist(), self.com_5_atoms)
         com.close()

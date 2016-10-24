@@ -13,6 +13,6 @@ pdbfile
 
 
 .. autoclass:: CGPDB
-    :members: _readIndex, closeFile, getSuffix, openFile, read, setClibPath
+    :members: _read, _readIndex, closeFile, getSuffix, openFile, read, readATOM, rotation, setClibPath
 
 

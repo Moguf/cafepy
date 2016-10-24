@@ -7,6 +7,6 @@ calc_com
 
 
 .. autoclass:: CalcCOM
-    :members: calcCOM, close, main, readDCD, readIndex, readPDB, writeFile, writeShow
+    :members: _read, _readIndex, close, getSuffix, read, readIndex, run, setClibPath, writeFile, writeShow
 
 

@@ -34,7 +34,7 @@ class CafePyBase(object):
 
         """
         from ..files.dcdfile import DCD
-        from ..files.pdbfile import PDB
+        from ..files.pdbfile import PDB, CGPDB
         from ..files.indexfile import Index
         from ..files.ninfofile import Ninfo        
 
@@ -44,7 +44,11 @@ class CafePyBase(object):
         data = None
 
         if sfx == 'pdb':
-            data = PDB(filename)
+            try:
+                data = PDB(filename)
+            except ValueError:
+                data = CGPDB(filename)
+
         elif sfx == 'dcd':
             data = DCD(filename)
         elif sfx == 'ninfo':
