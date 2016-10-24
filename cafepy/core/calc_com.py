@@ -51,37 +51,47 @@ class CalcCOM(CafePyBase):
     def readIndex(self):
         pass
 
-    def run(self, atom_indexes=[], unit_indexes=[], traj_indexes=[]):
+    def run(self, atom_idx=[], unit_idx=[], traj_idx=[]):
         """ 
         Calculates the Center of mass from DCD-file or PDB-file.
 
-        :Args: atom_indexes (list), traj_indexes (list)
-            :atom_indexes:    You can select Atom for calculating COM with indexes[.ndx,.ninfo]-file 
-            :traj_indexes:    You can extract trajectories for calculating COM.
+        :Args: atom_idx (list), traj_idx (list)
+
+            :atom_idx:    You can select Atoms for calculating COM with idx[.ndx,.ninfo]-file 
+            :unit_idx:    You can select Units in pdb format.
+            :traj_idx:    You can extract trajectories for calculating COM.
 
         """
-        if self.sfx == 'dcd':
-            return self._dcdrun(atom_indexes, unit_indexes, traj_indexes)
-        elif self.sfx == 'pdb':
-            return self._pdbrun(atom_indexes, unit_indexes)
         
-    def _dcdrun(self, atom_indexes=[], unit_indexes=[], traj_indexes=[]):
-        if not atom_indexes:
+        if self.sfx == 'dcd':
+            return self._dcdrun(atom_idx, unit_idx, traj_idx)
+        elif self.sfx == 'pdb':
+            return self._pdbrun(atom_idx, unit_idx)
+        
+    def _dcdrun(self, atom_idx=[], unit_idx=[], traj_idx=[]):
+        if not atom_idx:
             self.com = np.average(self.data[:], axis=1)
         else:
             ndata = np.array(self.data)
-            self.com = np.average(ndata[:, atom_indexes], axis=1)
+            self.com = np.average(ndata[:, atom_idx], axis=1)
         return self.com
 
-    def _pdbrun(self, atom_indexes=[], unit_index=[]):
-        if not atom_indexes:
+    def _pdbrun(self, atom_idx=[], unit_idx=[]):
+        if unit_idx:
+            _data = []
+            for i in unit_idx:
+                i = i-1
+                if i == 0:
+                    s = 0
+                else:
+                    s = sum(self.data.info['aasize'][:i])
+                e = sum(self.data.info['aasize'][:i+1])
+                _data += self.data[:][s: e]
+            ndata = np.array(_data)
+            self.com = np.average(ndata, axis=0)
+        elif not atom_idx:
             self.com = np.average(self.data[:], axis=0)
-        else:
-            ndata = np.array(self.data)
-            self.com = np.average(ndata[:, atom_indexes], axis=1)
         return self.com
-        
-            
 
     def writeFile(self, outputfile, header= ""):
         np.savetxt(outputfile, self.com, header=header, fmt="%.8e")

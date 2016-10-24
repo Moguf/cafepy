@@ -7,20 +7,19 @@ from importlib import import_module
 
 from unittest.mock import patch
 
-cafepypath = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(cafepypath)
+from .test_base import CafePyTestBase
+
 from cafepy.files import PDB, CGPDB
 
-class TestPDB(unittest.TestCase):
+class TestPDB(CafePyTestBase):
     @classmethod
     def setUpClass(cls):
-        cls.testdata = os.path.join(os.path.dirname(__file__), 'data/test.pdb')
-        cls.listdata = os.path.join(os.path.dirname(__file__), 'data/')
-        sys.path.append(cls.listdata)
+        pass
+    
+    def setUp(self):
         from test_data_in_pdbfile import list_pdb_data, list_pdb_coord
-        cls.pdblist = list_pdb_coord
-        
-        cls.pdb = PDB(cls.testdata)
+        self.pdblist = list_pdb_coord
+        self.pdb = PDB(self.data_path+'test.pdb')
         
     def test_readPDB_with_index(self):
         self.assertEqual([15.939, 14.6, -4.238], self.pdb[0])
@@ -49,21 +48,33 @@ class TestPDB(unittest.TestCase):
     def tearDownClass(cls):
         pass
 
-class TestCGPDB(unittest.TestCase):
+class TestCGPDB(CafePyTestBase):
     @classmethod
     def setUpClass(cls):
-        cls.testdata = os.path.join(os.path.dirname(__file__), 'data/cgtest.pdb')
-        cls.listdata = os.path.join(os.path.dirname(__file__), 'data/')
-        sys.path.append(cls.listdata)
-        cls.cgpdb = CGPDB(cls.testdata)
-        from test_data_in_pdbfile import list_cgpdb_data
-        cls.cgpdb_list = list_cgpdb_data
+        pass
+    
+    def setUp(self):
+        self.cgpdb = CGPDB(self.data_path+'cgtest.pdb')
+        self.bigpdb = CGPDB(self.data_path+'big_test.pdb')
+        
+    def test_unit_size_from_bigpdb(self):
+        self.assertEqual(self.bigpdb.info['usize'], 60)
 
+    def test_unit_size_from_cgpdb(self):
+        self.assertEqual(self.cgpdb.info['usize'], 1)
+
+    def test_amino_acid_size_from_bigpdb(self):
+        self.assertEqual(self.cgpdb.info['aasize'], 56)
+        
+    def test_amino_acid_size_from_bigpdb(self):
+        self.assertEqual(self.bigpdb.info['aasize'], [587 for i in range(60)])
+        
     def tearDown(self):
         pass
 
     def test_read_cgpdb(self):
-        self.assertEqual(self.cgpdb.ATOM, self.cgpdb_list)
+        pass
+    
     
     @classmethod
     def tearDownClass(cls):

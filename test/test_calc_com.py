@@ -32,7 +32,6 @@ class TestCalcCOM(CafePyTestBase):
         for x, a in zip(com.com.tolist(), ans):
             self.assertAlmostEqual(x, a)        
 
-        
     def test_readBigPDB(self):
         com = CalcCOM(self.bpdb)
         
@@ -60,12 +59,15 @@ class TestCalcCOM(CafePyTestBase):
         self.assertEqual(com.com.tolist(), self.com_5_atoms)
         com.close()
         
-
     def test_calcCOMfromDCD_with_index_and_slices(self):
         pass
         
-    def test_main(self):
-        pass
+    def test_calc_com_from_cgpdb_with_unitindexes(self):
+        com = CalcCOM(self.bpdb)
+        com.run(unit_idx=[1])
+        ans = [-42.01642589, 15.75263203, 95.42158773]
+        for x, a in zip(com.com.tolist(), ans):
+            self.assertAlmostEqual(x, a)        
 
     def tearDown(self):
         pass

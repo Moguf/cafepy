@@ -22,8 +22,43 @@ from .file_io import FileIO
 from ..utils.cafepy_error import CafePyError
 from ..utils.cafepy_base import CafePyBase
 from ..utils.cafepy_math import rotation3D
+
+class BasePDB(CafePyBase, FileIO):
+    def __init__(self, filename):
+        FileIO.__init__(self)
+        self.ftype = 'pdb'
+        self.coard = []
+        self.data = []
+        self.filename = filename
+
+
+    def __getitem__(self,key):
+        if isinstance(key, slice):
+            return [self[i] for i in range(*key.indices(len(self)))]
+        elif isinstance(key, int):
+            if key < 0:
+                key += len(self)
+            if key < 0 or key >= len(self):
+                raise IndexError("The index (%d) is out of range." % key)
+            return self.data[key][5:8]
+        else:
+            raise TypeError("Invalid argument type.")
+
+    def __len__(self):
+        return len(self.data)
+
+    def _read(self):
+        self._file = self.openFile(self.filename)
+        self.readATOM()
+
+    def close(self):
+        self._file.close()
+        return True
         
-class PDB(CafePyBase, FileIO):
+    def write(self, xyz=[], inpsffile=""):
+        pass
+
+class PDB(BasePDB):
     """
     Reading a PDB(Protein Data Bank) file which is an output from CafeMol Software.
     This class returns coordinates as list format. Please check examples below.
@@ -41,12 +76,8 @@ class PDB(CafePyBase, FileIO):
         pdb.close()
     
     """
-    def __init__(self, filename):
-        FileIO.__init__(self)
-        self.filename = filename
-        self.ftype = 'pdb'
-        self.coard = []
-        self.row_data = []
+    def __init__(self, filename, *args, **kwargs):
+        super(PDB, self).__init__(filename, *args, **kwargs)
         self._read()
 
     def get(self):
@@ -54,7 +85,7 @@ class PDB(CafePyBase, FileIO):
         :input:   None
         :return:  pdb data as list format
         """
-        return self.row_data()
+        pass
         
     def readATOM(self):
         """
@@ -77,58 +108,55 @@ class PDB(CafePyBase, FileIO):
         
         for line in self._file.readlines():
             if re.match(r"(ATOM)", line):
-                self.row_data.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
-        return self.row_data
+                self.data.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
+        return self.data
 
-    def __getitem__(self,key):
-        if isinstance(key, slice):
-            return [self[i] for i in range(*key.indices(len(self)))]
-        elif isinstance(key, int):
-            if key < 0:
-                key += len(self)
-            if key < 0 or key >= len(self):
-                raise IndexError("The index (%d) is out of range." % key)
-            return self.row_data[key][5:8]
-        else:
-            raise TypeError("Invalid argument type.")
-
-    def __len__(self):
-        return len(self.row_data)
-
-    def _read(self):
-        self._file = self.openFile(self.filename)
-        self.readATOM()
-
-    def close(self):
-        self._file.close()
-        return True
-        
-    def write(self, xyz=[], inpsffile=""):
-        pass
 
     
-class CGPDB(CafePyBase, FileIO):
+class CGPDB(BasePDB):
     """
     Reading a Coarse-Grained PDB(Protein Data Bank) file which is an output from CafeMol Software.
     """
-    def __init__(self, filename):
+    def __init__(self, filename, *args, **kwargs):
+        super(CGPDB, self).__init__(filename, *args, **kwargs)        
         self.filename = filename
-        self.ATOM = []
+        self.data = []
         self.coords = []
+        self.info = {}
         self._read()
         
     def _read(self):
         self._file = self.openFile(self.filename)
-        self.readATOM()
+        self._readATOM()
         
-    def readATOM(self):
+    def _readATOM(self):
         _format = [(6,11,int),(12,16,str),(17,20,str),                  #serial,atomName,resName
                    (21,22,str),(22,26,int),                             #chainID,resSeq
                    (30,38,float),(38,46,float),(46,54,float)]
+        usize = 0
+        aasize = []
+        each_aasize = 0
         for line in self._file.readlines():
             if re.match(r"(ATOM)", line):
-                self.ATOM.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
-        return self.ATOM
+                self.data.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
+                each_aasize += 1
+            if re.match(r'TER', line):
+                aasize.append(each_aasize)
+                usize += 1
+                each_aasize = 0
+        ## the number of amino acid                
+        self.info['aasize'] = aasize
+
+        ## the number of amino unit
+        if usize == 0:
+            self.info['usize'] = 1
+        else:
+            self.info['usize'] = usize
+        return self.data
+
+    def getUnitSize(self):
+        pass
+        
 
     def rotation(self, alpha, beta, gamma):
         self.coords = rotation3D(self.coords, alpha, beta, gamma)
