@@ -4,6 +4,8 @@ import os
 import sys
 import unittest
 
+import numpy
+
 from cafepy.core import CalcCOM
 
 from .test_base import CafePyTestBase
@@ -29,7 +31,7 @@ class TestCalcCOM(CafePyTestBase):
         com = CalcCOM(self.pdb)
         com.run()
         ans = [17.16436541,   3.21423024,  -4.56492325]
-        for x, a in zip(com.com.tolist(), ans):
+        for x, a in zip(com.com, ans):
             self.assertAlmostEqual(x, a)        
 
     def test_readBigPDB(self):
@@ -62,13 +64,21 @@ class TestCalcCOM(CafePyTestBase):
     def test_calcCOMfromDCD_with_index_and_slices(self):
         pass
         
-    def test_calc_com_from_cgpdb_with_unitindexes(self):
+    def test_calc_com_from_cgpdb_with_unit_indexes(self):
         com = CalcCOM(self.bpdb)
         com.run(unit_idx=[1])
         ans = [-42.01642589, 15.75263203, 95.42158773]
-        for x, a in zip(com.com.tolist(), ans):
+        for x, a in zip(com.com, ans):
             self.assertAlmostEqual(x, a)        
 
+
+    def test_calc_com_from_cgpdb_with_atom_indexes(self):
+        com = CalcCOM(self.bpdb)
+        com.run(atom_idx=[0,1])
+        ans = [ 27.2185, 17.1195, 57.5215]
+        for x, a in zip(com.com, ans):
+            self.assertAlmostEqual(x, a)        
+            
     def tearDown(self):
         pass
 

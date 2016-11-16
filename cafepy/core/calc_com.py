@@ -57,12 +57,12 @@ class CalcCOM(CafePyBase):
 
         :Args: atom_idx (list), traj_idx (list)
 
-            :atom_idx:    You can select Atoms for calculating COM with idx[.ndx,.ninfo]-file 
-            :unit_idx:    You can select Units in pdb format.
+            :atom_idx:    You can select Atoms for calculating COM with idx[.ndx,.ninfo]-file [ from 0 to ~]
+            :unit_idx:    You can select Units in pdb format. [from 1 to ~]
             :traj_idx:    You can extract trajectories for calculating COM.
 
         """
-        
+        self.com = []        
         if self.sfx == 'dcd':
             return self._dcdrun(atom_idx, unit_idx, traj_idx)
         elif self.sfx == 'pdb':
@@ -89,8 +89,10 @@ class CalcCOM(CafePyBase):
                 _data += self.data[:][s: e]
             ndata = np.array(_data)
             self.com = np.average(ndata, axis=0)
-        elif not atom_idx:
-            self.com = np.average(self.data[:], axis=0)
+        elif atom_idx:
+            self.com = np.average(np.array(self.data[:])[atom_idx], axis=0)
+        else:
+            self.com = np.average(np.array(self.data[:]), axis=0)
         return self.com
 
     def writeFile(self, outputfile, header= ""):

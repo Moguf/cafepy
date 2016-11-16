@@ -55,8 +55,10 @@ class BasePDB(CafePyBase, FileIO):
         self._file.close()
         return True
         
-    def write(self, xyz=[], inpsffile=""):
+    def write(self, wfile="" ,xyz=[]):
         pass
+        
+        
 
 class PDB(BasePDB):
     """
@@ -111,6 +113,8 @@ class PDB(BasePDB):
                 self.data.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
         return self.data
 
+    def write(self, wfile="", xyz=[]):
+        pass
 
     
 class CGPDB(BasePDB):
@@ -139,6 +143,7 @@ class CGPDB(BasePDB):
         for line in self._file.readlines():
             if re.match(r"(ATOM)", line):
                 self.data.append([slc[2](line[slice(*slc[:2])]) for slc in _format])
+                self.coords.append([slc[2](line[slice(*slc[:2])]) for slc in _format[5:]])                
                 each_aasize += 1
             if re.match(r'TER', line):
                 aasize.append(each_aasize)
@@ -156,11 +161,25 @@ class CGPDB(BasePDB):
 
     def getUnitSize(self):
         pass
-        
 
+    def write(self, wfile="out.pdb" ,xyz=[]):
+        if not xyz:
+            xyz = self.coords
+        wtxt = 'MODEL    1\n'
+        aa = 0
+        unit = 0
+        for d,c in zip(self.data, xyz):
+            aa += 1
+            wtxt += "ATOM {0:>6d} {1:>4s} {2:>3s}{3:>2s}{4:>4d}    {5:8.3f}{6:8.3f}{7:8.3f}\n".format(d[0], d[1], d[2], d[3], d[4], c[0], c[1], c[2])
+            if aa == self.info['aasize'][unit]:
+                aa = 0
+                wtxt += "TER\n"
+        wtxt += 'ENDMDL'            
+        with open(wfile, 'w') as f:
+            f.write(wtxt)
+    
     def rotation(self, alpha, beta, gamma):
         self.coords = rotation3D(self.coords, alpha, beta, gamma)
-
     
 if __name__ == "__main__":
     tmp = PDB()
