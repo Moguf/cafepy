@@ -168,16 +168,15 @@ class DCD(CafePyBase,FileIO):
             coord_matrix.append(xyz)
         return coord_matrix
 
-    
     def __getitem__(self, key):
         """
         Supporting to get item with an index and slice. ex. self[1],self[2:4]
         @Referance:
         http://stackoverflow.com/questions/2936863/python-implementing-slicing-in-getitem
         """
-        if isinstance(key,slice):
+        if isinstance(key, slice):
             return [self[i] for i in range(*key.indices(len(self)))]
-        elif isinstance(key,int):
+        elif isinstance(key, int):
             if key < 0:
                 key += len(self)
             if key <0 or key >= len(self):

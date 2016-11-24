@@ -52,7 +52,7 @@ class CalcDistance(CafePyBase):
         self.pairlist = self.makePair(self.index)
         self.dist_data = [[] for i in range(len(self.pairlist))]
 
-    def calcDist(self):
+    def run(self):
         '''
         calculate distances between given pairs.
         :inputs:  None
@@ -70,40 +70,41 @@ class CalcDistance(CafePyBase):
         '''
         calculate distances between given pairs from PDB files.
         this class is called from self.calcDist()
-        :inputs:  None
-        :return:  results
+
+        :args:  
+        :return:  Distances (list)
         '''
         for icoord in self.data:
             for i, pair in enumerate(self.pairlist):
-                self.dist_data[i].append(euc(icoord[pair[0]],icoord[pair[1]]))
+                self.dist_data[i].append(euc(icoord[pair[0]], icoord[pair[1]]))
         return self.dist_data
         
     def _calcDistPDB(self):
         '''
         calculate distances between given pairs from PDB files.
         this class is called from self.calcDist()
-        :inputs:  None
-        :return:  results
+        :args:  
+        :return:  Distances (list)
         '''
         for i, pair in enumerate(self.pairlist):
-            self.dist_data[i] = euc(self.data[pair[0]],self.data[pair[1]])
+            self.dist_data[i] = euc(self.data[pair[0]], self.data[pair[1]])
         return self.dist_data
 
-    def makePair(self, index):
+    def makePair(self, index_list):
         '''
         make pairs from index[list-foarmat]
-        :inputs:  list-format
-        :return:  pairs list
+        :Args:  index_list (list)
+        :return:  pairs (list)
         '''
         pairlist = []
-        for i in range(len(index))[::2]:
-            pairlist.append([index[i], index[i+1]])
+        for i in range(len(index_list))[::2]:
+            pairlist.append([index_list[i], index_list[i+1]])
         return pairlist
             
     def getIndex(self, index):
         '''
         get indexes from file for list.
-        :inputs:  index (filename or list-format)
+        :Args:  index (filename or list-format)
         :return:  self.index ( list-format )
         '''
         if isinstance(index, str):

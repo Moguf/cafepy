@@ -16,9 +16,13 @@ class TestCafePyBase(CafePyTestBase):
 
     def test_read_dcd(self):
         data = self.tcls.read(self.data_path + "test.dcd")
+        
     def test_read_pdb(self):
         data = self.tcls.read(self.data_path + "test.pdb")
 
+    def test_read_pdb(self):
+        data = self.tcls.read(self.data_path + "cgtest.pdb")
+        
     def test_read_ninfo(self):
         data = self.tcls.read(self.data_path + "test.ninfo")
 

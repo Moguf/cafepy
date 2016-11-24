@@ -24,9 +24,9 @@
 .. |Downloads| image:: https://img.shields.io/pypi/dm/CafePy.svg
    :target: https://pypi.python.org/pypi/Cafepy
           
-.. |docs| image:: https://readthedocs.org/projects/grab/badge/?version=latest
-   :target: http://cafepy.readthedocs.io/en/latest/
-
+.. |docs| image:: https://readthedocs.org/projects/cafepy/badge/?version=latest
+   :target: http://cafepy.readthedocs.io/en/latest/?badge=latest
+   :alt: Dcumentation Status
 
 
 Welcome to CafePy's documentation!

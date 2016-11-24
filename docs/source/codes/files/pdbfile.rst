@@ -7,12 +7,12 @@ pdbfile
 
 
 .. autoclass:: PDB
-    :members: close, closeFile, openFile, read, readATOM, write
+    :members: _read, _readIndex, close, closeFile, get, getSuffix, openFile, read, readATOM, setClibPath, write
 
 
 
 
 .. autoclass:: CGPDB
-    :members: closeFile, openFile
+    :members: _read, _readIndex, closeFile, getSuffix, openFile, read, readATOM, rotation, setClibPath
 
 

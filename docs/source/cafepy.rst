@@ -1,7 +1,13 @@
-CafePy Souce Code Ducumentation.
+CafePy API's
 ================================
 
-Souce Code Ducumentation.
+Cafepy API's provide how to use this modules. You can understand what to do and how to do with cafepy in your program. 
+
+.. toctree::
+   :maxdepth: 1
+              
+   codes/coding_guide.rst
+
 
 Scripts
 -------
@@ -19,10 +25,13 @@ Modules
 .. toctree::
    :maxdepth: 1
 
+   codes/core/calc_rmsf
    codes/core/calc_cmap
-   codes/core/calc_com
+   codes/core/calc_superimpose
    codes/core/calc_distance
+   codes/core/calc_com
    codes/core/calc_qscore
+   codes/core/calc_rmsd
 
 **files**
    
@@ -48,4 +57,3 @@ Modules
    codes/utils/cafepy_memory_manager
    codes/utils/cafepy_stdout
    
-

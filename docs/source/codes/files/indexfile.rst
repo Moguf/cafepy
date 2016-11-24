@@ -7,6 +7,6 @@ indexfile
 
 
 .. autoclass:: Index
-    :members: closeFile, main, openFile, read
+    :members: _read, closeFile, openFile
 
 
